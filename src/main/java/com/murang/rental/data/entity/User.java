@@ -10,13 +10,12 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name ="user")
-public class User{
+@Table(name = "user")
+public class User {
 
     @Id
     private String id;
@@ -25,22 +24,27 @@ public class User{
     private String password;
 
     @ColumnDefault("3")
-    private int grade;
+    @Column(insertable=false)
+    private Integer grade;
 
     @ColumnDefault("1")
-    private  int member_status;
+    @Column(insertable=false)
+    private Integer member_status;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private Date birth;
+    private String birth;
 
     @Column(nullable = false)
     private String location;
 
-
-
-
-
+    public User(String id, String password, String name, String birth, String location) {
+        this.id = id;
+        this.password = password;
+        this.name = name;
+        this.birth = birth;
+        this.location = location;
+    }
 }
