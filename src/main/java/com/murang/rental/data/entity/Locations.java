@@ -1,5 +1,6 @@
 package com.murang.rental.data.entity;
 
+import com.murang.rental.data.dto.ArticleRegisterDto;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -19,10 +20,13 @@ public class Locations {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer locationId;
 
-    private String zipNum;
     private String sido;
-    private String gugun;
-    private String dong;
-    private String bunji;
-    private String zipCode;
+    private String sigugun;
+    private String bname;
+
+    public Locations(ArticleRegisterDto articleRegisterDto) {
+        this.sido = articleRegisterDto.getSido();
+        this.sigugun = articleRegisterDto.getSigugun();
+        this.bname = articleRegisterDto.getBname();
+    }
 }

@@ -19,7 +19,7 @@
     </script>
 </head>
 <body>
-<form method="post" action="/articles" enctype="multipart/form-data">
+<form method="post" action="/articles/new" enctype="multipart/form-data">
     <table border="1">
         <tr>
             <td>제목: <input type="text" name="title"/></td>
@@ -29,6 +29,22 @@
         </tr>
         <tr>
             <td>가격: <input type="text" name="price"/></td>
+        </tr>
+        <tr>
+            <td>지역: <input id="sido" type="text" placeholder="시/도" readonly></td>
+            <td> <input id="sigungu" type="text" placeholder="시/군/구" readonly></td>
+            <td> <input id="bname" type="text" placeholder="동/리" readonly></td>
+            <td> <button onclick="findAddr()"> 찾기 </button></td>
+        </tr>
+        <tr>
+            <td>카테고리: <select th:name="category">
+                <option th:each="categoryValue : ${T(com.murang.rental.data.entity.Category).values()}"
+                    th:value = "${categoryValue.name()}"
+                    th:text = "${categoryValue.name()}">
+                    val
+                </option>
+            </select>
+            </td>
         </tr>
         <tr>
             <td>기간: <input type="text" name="period"/></td>
@@ -46,4 +62,17 @@
     <input type="submit" value="제출"/>
 </form>
 </body>
+<script>
+    function findAddr() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+
+                document.getElementById('sido').value = data.sido;
+                document.getElementById('sigungu').value = data.sigungu;
+                document.getElementById('bname').value = data.bname;
+            }
+        }).open();
+    }
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>

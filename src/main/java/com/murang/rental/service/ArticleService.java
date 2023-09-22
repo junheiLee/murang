@@ -1,11 +1,13 @@
 package com.murang.rental.service;
 
-import com.murang.rental.data.dto.ArticleDto;
+import com.murang.rental.data.dto.ArticleRegisterDto;
+import com.murang.rental.data.dto.LocationDto;
 import com.murang.rental.data.entity.Articles;
 import com.murang.rental.data.entity.HeartArticle;
 import com.murang.rental.data.entity.User;
 import com.murang.rental.data.repository.ArticlesRepository;
 import com.murang.rental.data.repository.HeartRepository;
+import com.murang.rental.data.repository.LocationRepository;
 import com.murang.rental.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,22 +27,38 @@ import java.util.Optional;
 public class ArticleService {
 
     ArticlesRepository articlesRepository;
+    LocationRepository locationRepository;
     EntityManager em;
     HeartRepository heartRepository;
     UserRepository userRepository;
 
     @Autowired
-    public ArticleService(ArticlesRepository articlesRepository, EntityManager em, HeartRepository heartRepository, UserRepository userRepository) {
+    public ArticleService(ArticlesRepository articlesRepository,
+                          LocationRepository locationRepository,
+                          EntityManager em,
+                          HeartRepository heartRepository,
+                          UserRepository userRepository) {
         this.articlesRepository = articlesRepository;
+        this.locationRepository = locationRepository;
         this.em = em;
         this.heartRepository = heartRepository;
         this.userRepository = userRepository;
     }
 
+    @Transactional(readOnly = true)
+    public List<Articles> articleList() {
+        return articlesRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Articles> articleList(LocationDto locationDto) {
+        return articlesRepository.findAllByLocation(locationDto.getSido());
+    }
     @Transactional
-    public void insertArticle(ArticleDto articleDto, MultipartFile image) throws IOException {
-        Articles article = new Articles(articleDto);
+    public void insertArticle(ArticleRegisterDto articleRegisterDto, MultipartFile image) throws IOException {
+        Articles article = new Articles(articleRegisterDto);
         article.setPublishDay(LocalDateTime.now());
+
         String filePathAndUpload = getFilePathAndUpload(image);
         article.setFilePath(filePathAndUpload);
 
@@ -48,10 +66,6 @@ public class ArticleService {
         Articles.articleFactory(savedArticle);
     }
 
-    @Transactional(readOnly = true)
-    public List<Articles> articleList() {
-        return articlesRepository.findAll();
-    }
 
     @Transactional(readOnly = true)
     public Map<String, Object> detailArticle(Integer id) {
