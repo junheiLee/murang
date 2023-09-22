@@ -5,7 +5,10 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.xml.stream.Location;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -15,37 +18,47 @@ import java.util.Date;
 @Table(name = "user")
 public class User {
 
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer num;
+
+    @Column(unique = true,nullable = false)
     private String id;
 
     @Column(nullable = false)
     private String password;
 
-    @ColumnDefault("2.5")
-    @Column(insertable=false)
+    @ColumnDefault("3")
+    @Column(insertable = false)
     private Double grade;
 
     @ColumnDefault("1")
-    @Column(insertable=false)
-    private Integer member_status;
+    @Column(insertable = false)
+    private int member_status;
 
     @Column(nullable = false)
     private String name;
 
-    private String profileImage;
+//    @Column(nullable = false)
+//    private String nickname;
 
-    @Column(nullable = false)
-//    @OneToOne
-    private String location;
+    @OneToOne
+    private Locations locations;
+
+    @OneToMany
+    private List<Articles> makenArticlesList = new ArrayList<>();
+
+    @OneToMany
+    private List<Articles> rentArticlesList = new ArrayList<>();
+
 
 
     public User(UserDto userDto) {
         this.id = userDto.getId();
         this.password = userDto.getPassword();
         this.name = userDto.getName();
-        this.location = userDto.getLocation();
         this.grade = userDto.getGrade();
-        this.member_status = userDto.getMember_status();
     }
 
 

@@ -53,31 +53,7 @@ $('#loginbtn').click(function(){
 
 
 
-   function blockKoreanAndSpaceInput(event) {
-            const keyCode = event.keyCode || event.which;
-            if (((keyCode >= 12592 && keyCode <= 12687) || (keyCode >= 44032 && keyCode <= 55203)) || keyCode === 32) {
-                event.preventDefault();
-            }
-        }
 
-      $(".checkID").click(()=>{
-      var check =  $("#id").val();
-      if(check != ""){
-       $.ajax({
-          method : 'GET',
-          url :'/user/check/'+ check
-       }).done(function(결과){
-      console.log("성공")
-       }).fail(function(에러){
-          return console.log("왜실패여ㅑ..");
-       })
-      }else{
-        alert("입력을해라");
-      }
-});
-
-
-      
 
 
 

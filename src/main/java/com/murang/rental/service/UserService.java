@@ -11,6 +11,6 @@ public interface UserService {
      void insertUser(UserDto userDto);
      String isDuplicate(String id);
 
-     User findById(String id);
+     User findUserById(String id);
 
 }

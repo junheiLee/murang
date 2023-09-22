@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ArticlesRepository extends JpaRepository<Articles,Integer> {
 
-    @Query(value = "select * from articles where articles.location.sido=?1")
-    List<Articles> findAllByLocation(String sido);
-    List<Articles> findByCategory(Category category);
+//    @Query(value = "select * from articles where articles.location.sido=?1")
+//    List<Articles> findAllByLocation(String sido);
+//    List<Articles> findByCategory(Category category);
 }

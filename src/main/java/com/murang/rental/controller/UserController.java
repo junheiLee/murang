@@ -28,7 +28,7 @@ public class UserController {
         session.setAttribute("id", "test");
         String id = (String) session.getAttribute("id");
         if (id != null) {
-           User user = userService.findById(id);
+           User user = userService.findUserById(id);
            model.addAttribute("user",user);
             System.out.println(user.getGrade());
             return "mypage";
@@ -47,6 +47,7 @@ public class UserController {
     @GetMapping("/check/{id}")
     @ResponseBody
     public String checkID(@PathVariable String id) {
+        System.out.println("컨트롤러");
         return userService.isDuplicate(id);
     }
 

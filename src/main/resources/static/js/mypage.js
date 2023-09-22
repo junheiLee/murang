@@ -60,7 +60,6 @@ menuItems.forEach(item => {
 
         $('.mymenu li').on('click', function () {
             var url = $(this).data('url');
-            console.log(url);
             $.ajax({
                 url: "/users/"+url,
                 method: 'GET',
