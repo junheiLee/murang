@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface LocationRepository extends JpaRepository<Locations, Integer> {
 
-    @Query()
-    List<Articles> findAllByLocation(String sido, String sigungu, String bname);
+//    @Query()
+//    List<Articles> findAllByLocation(String sido, String sigungu, String bname);
 }

@@ -37,11 +37,11 @@ public class ArticleController {
         return "articles/list";
     }
 
-    @GetMapping("/region")
-    public String articleList(@ModelAttribute LocationDto locationDto, Model model) {
-        model.addAttribute("articleList", articleService.articleList(locationDto));
-        return "articles/list";
-    }
+//    @GetMapping("/region")
+//    public String articleList(@ModelAttribute LocationDto locationDto, Model model) {
+//        model.addAttribute("articleList", articleService.articleList(locationDto));
+//        return "articles/list";
+//    }
 
 
     /**

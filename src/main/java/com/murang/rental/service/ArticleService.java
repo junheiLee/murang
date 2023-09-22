@@ -26,11 +26,11 @@ import java.util.Optional;
 @Service
 public class ArticleService {
 
-    ArticlesRepository articlesRepository;
-    LocationRepository locationRepository;
-    EntityManager em;
-    HeartRepository heartRepository;
-    UserRepository userRepository;
+    private final ArticlesRepository articlesRepository;
+    private final LocationRepository locationRepository;
+    private final EntityManager em;
+    private final HeartRepository heartRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public ArticleService(ArticlesRepository articlesRepository,
@@ -50,10 +50,10 @@ public class ArticleService {
         return articlesRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
-    public List<Articles> articleList(LocationDto locationDto) {
-        return articlesRepository.findAllByLocation(locationDto.getSido());
-    }
+//    @Transactional(readOnly = true)
+//    public List<Articles> articleList(LocationDto locationDto) {
+//        return articlesRepository.findAllByLocation(locationDto.getSido());
+//    }
     @Transactional
     public void insertArticle(ArticleRegisterDto articleRegisterDto, MultipartFile image) throws IOException {
         Articles article = new Articles(articleRegisterDto);
@@ -96,7 +96,7 @@ public class ArticleService {
 
     @Transactional
     public void rentalArticle(String userId, Integer articleId) {
-        User user = userRepository.findByUserId(userId).get();
+        User user = userRepository.findById(userId).get();
         Articles articles = articlesRepository.findById(articleId).get();
         if(!articles.isStatus()) {
             List<Articles> rentArticlesList = user.getRentArticlesList();
@@ -110,7 +110,7 @@ public class ArticleService {
 
     @Transactional(readOnly = true)
     public List<Articles> rentalArticleList(String userId) {
-        return userRepository.findByUserId(userId).get().getRentArticlesList();
+        return userRepository.findById(userId).get().getRentArticlesList();
     }
 
     private String getFilePathAndUpload(MultipartFile image) throws IOException {

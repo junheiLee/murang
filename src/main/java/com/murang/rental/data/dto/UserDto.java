@@ -14,6 +14,5 @@ public class UserDto {
     private String name;
     private Double grade;
     private Integer member_status;
-    private String birth;
     private String location;
 }
