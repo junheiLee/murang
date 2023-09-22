@@ -1,0 +1,161 @@
+
+.container{
+    width:800px;
+    margin: 0 auto;
+}
+
+.profile{
+    width:100%;
+    height: 300px;
+border: 1px solid #bbb;
+margin-top: 30px;
+padding: 50px;
+position:relative;
+}
+.left-profile{
+    border: 1px solid #bbb;
+    width:250px;
+    height: 200px;
+    float:left;
+}
+.profile-photo{
+    height: 100%;
+}
+.right-profile{
+    float:right;
+    width:448px;
+    height: 200px;
+    padding-left: 100px;
+}
+
+.right-profile div{
+    height: 100px;
+    font-size: 20px;
+    line-height: 100px;
+    font-weight: bold;
+}
+
+.editbtn{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+    border: 1px solid #bbb;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.editbtn:hover{
+    background-color: #bbb;
+    color:#fff;
+}
+
+.commitbtn{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
+    border: 1px solid #bbb;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.commitbtn:hover{
+    background-color: #bbb;
+    color:#fff;
+}
+
+.canclebtn{
+    position: absolute;
+    right: 75px;
+    bottom: 10px;
+    font-size: 12px;
+    border: 1px solid #bbb;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.canclebtn:hover{
+    background-color: #bbb;
+    color:#fff;
+}
+
+
+.deletebtn{
+    position: absolute;
+    right: 140px;
+    bottom: 10px;
+    font-size: 12px;
+    border: 1px solid #bbb;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.deletebtn:hover{
+    background-color: #bbb;
+    color:#fff;
+}
+
+#changephoto{
+position:absolute;
+    font-size:12px;
+    display: inline-block;
+    font-weight: bold;
+    border: 1px solid #bbb;
+    padding: 3px;
+    margin-top:10px ;
+    top:255px;
+    left:150px;
+}
+
+
+.mymenu{
+    width:800px;
+    height: 50px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.mymenu li{
+    cursor: pointer;
+    float:left;
+    width:200px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid #bbb;
+    border-right: none;
+}
+.mymenu li:last-child{
+    border-right: 1px solid #bbb;
+}
+
+.selected {
+    background-color: #bbb; /* 원하는 선택 색상 설정 */
+  }
+
+
+  .plist{
+    height: 70px;
+    width:100%;
+    border: 1px solid black;
+    margin-bottom: 20px;
+  }
+
+  .pimg{
+    width:80px;
+    height: 100%;
+    float:left;
+  }
+
+  .ptitle{
+    width:718px;
+    height: 34px;
+    float:left;
+    line-height: 34px;
+  }
+  .pinfo{
+    width: 718px;
+    height: 34px;
+    line-height: 34px;
+    float:left;
+  }

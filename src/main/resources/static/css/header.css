@@ -1,0 +1,202 @@
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NanumSquareNeo-Variable';
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:visited {
+    color: #000;
+}
+
+
+.zzim1{
+    position: fixed;
+    top: 110px;
+    right: calc(50% - 500px);
+    z-index: 20;
+    border: 1px solid #bbb;
+    padding: 10px;
+}
+.zzim2{
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(102, 102, 102);
+    text-align: center;
+    margin-bottom: 8px;
+}
+.zzim1 i{
+    color:rgb(248, 85, 85);
+}
+.zzim1 a{
+text-align: center;
+display: block;
+width: 100%;
+}
+
+.upbtn{
+    cursor: pointer;
+    position: fixed;
+    top: 180px;
+    right: calc(50% - 500px);
+    z-index: 20;
+    border: 1px solid #bbb;
+    padding: 10px;
+    width:67px;
+}
+.upbtn2{
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(102, 102, 102);
+    text-align: center;
+}
+
+
+.header-wrap {
+    margin: 0 auto;
+    width: 100%;
+    height: 80px;
+    background-color: antiquewhite;
+}
+
+header {
+    width: 1000px;
+    height: 100%;
+    line-height: 80px;
+    margin: 0 auto;
+}
+
+.header-logo {
+    width: 150px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+}
+
+.header-login {
+    float: right;
+    font-size: 18px;
+}
+
+.header-login p {
+    cursor: pointer;
+    display: inline;
+}
+
+.header-menu {
+    width: 100%;
+}
+
+.header-menu li {
+    float: left;
+    width: 100px;
+    text-align: center;
+    font-weight:bold;
+}
+
+.fa-user {
+    border: 1px solid black;
+    border-radius: 100px;
+    padding: 5px;
+}
+
+
+.header-menu li a:hover {
+    color: #afacac;
+}
+
+
+
+/* 검색바 */
+
+.searchbar {
+    width: 400px;
+    height: 40px;
+    float: left;
+    position: relative;
+    margin-top: 20px;
+}
+
+.searchbar .searchbox {
+    float: right;
+    width: 50%;
+    height: 40px;
+    border: none;
+    border-radius: 100px;
+    text-indent: 10px;
+    transform: rotate(0.04deg);
+}
+
+.searchbar i {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* 검색바 */
+
+
+/* 로그인 팝업창*/
+
+
+.loginbgout {
+    display: none;
+    position: fixed;
+    z-index: 555;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .loginbgin {
+    position: absolute;
+    width: 400px;
+    height: 250px;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .loginbgin h1{
+    text-align: center;
+  }
+  .loginbgin a{
+    margin-top: 48.75px;
+    display: block;
+  }
+
+/* 로그인 팝업창 종료*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.show{display: block;}
