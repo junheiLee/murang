@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragment/header.html :: fragment-head"></div>
+    <title>Document</title>
+    <script>
+
+
+     $(document).ready(function() {
+$("#smit").prop("disabled", true);
+
+document.querySelector("#id").addEventListener('input', function(event) {
+  let inputValue = event.target.value;
+  inputValue = inputValue.replace(/[^A-Za-z0-9]/g, '');
+  event.target.value = inputValue;
+  var submitBtn = $("#smit");
+submitBtn.prop("disabled", true);
+});
+
+   $(".checkID").click(()=>{
+   var check =  $("#id").val();
+   if(check != ""){
+    $.ajax({
+       method : 'GET',
+       url :'/users/check/'+ check
+    }).done(function(data){
+   alert(data);
+   if(data == "사용가능한 아이디 입니당"){
+   $("#smit").prop("disabled", false);
+   }
+    }).fail(function(error){
+       return console.log(error);
+    })
+   }else{
+     alert("입력을해줘요");
+   }
+});
+
+
+
+   });
+    </script>
+</head>
+<body>
+<div th:replace="/fragment/header.html :: fragment-header"></div>
+<form action="/users/join" method="POST">
+    아이디
+    <input type="text" maxlength="10" name="id" id="id"/><span class="checkID">중복체크</span><br>
+    비번
+    <input type="text" name="password" /><br>
+    이름
+    <input type="text" name="name" />
+    <br>
+    지역
+    <input type="text" name="location" /><br>
+    <input type="submit" id="smit" value="가입" />
+
+</form>
+
+</body>
+</html>
