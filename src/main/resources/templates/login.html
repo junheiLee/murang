@@ -6,42 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-
-
-     $(document).ready(function() {
-
-document.querySelector("#id").addEventListener('input', function(event) {
-  let inputValue = event.target.value;
-  inputValue = inputValue.replace(/[^A-Za-z0-9]/g, '');
-  event.target.value = inputValue;
-});
-
-   $(".checkID").click(()=>{
-   var check =  $("#id").val();
-   if(check != ""){
-    $.ajax({
-       method : 'GET',
-       url :'/user/check/'+ check
-    }).done(function(data){
-   alert(data);
-    }).fail(function(error){
-       return console.log(error);
-    })
-   }else{
-     alert("입력을해줘요");
-   }
-});
-
-   });
-    </script>
 </head>
 <body>
 
-<form action="/user/join" method="POST">
+<form action="#" method="POST">
     아이디
-    <input type="text" maxlength="10" name="id" id="id"/><span class="checkID">중복체크</span><br>
+    <input type="text" name="id" /><br>
     비번
     <input type="text" name="password" /><br>
     생년월일
@@ -49,8 +19,6 @@ document.querySelector("#id").addEventListener('input', function(event) {
     이름
     <input type="text" name="name" />
     <br>
-    지역
-    <input type="text" name="location" /><br>
     <input type="submit" value="가입" />
 </form>
 
