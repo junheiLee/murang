@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function setThumbnail(event){
+            var reader = new FileReader();
+
+            reader.onload = function(event){
+                var img = document.createElement("img");
+                img.setAttribute("src", event.target.result);
+                img.setAttribute("class", "col-lg-6");
+                document.querySelector("div#image_container").appendChild(img);
+            };
+
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</head>
+<body>
+<form method="post" action="/articles" enctype="multipart/form-data">
+    <table border="1">
+        <tr>
+            <td>제목: <input type="text" name="title"/></td>
+        </tr>
+        <tr>
+            <td>재고: <input type="text" name="stock"/></td>
+        </tr>
+        <tr>
+            <td>가격: <input type="text" name="price"/></td>
+        </tr>
+        <tr>
+            <td>기간: <input type="text" name="period"/></td>
+        </tr>
+        <tr>
+            <td>이미지: <input type="file" name="image" onchange="setThumbnail(event)" required /></td>
+        </tr>
+        <tr>
+            <td>설명: <input type="text" name="description"/></td>
+        </tr>
+    </table>
+    <input type="hidden" name="status" value="0" />
+    <input type="hidden" name="id" value="0" />
+    <div id="image_container"></div>
+    <input type="submit" value="제출"/>
+</form>
+</body>
+</html>

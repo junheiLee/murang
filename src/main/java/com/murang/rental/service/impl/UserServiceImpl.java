@@ -1,7 +1,8 @@
-package com.murang.rental.service;
+package com.murang.rental.service.impl;
 
 import com.murang.rental.data.entity.User;
 import com.murang.rental.data.repository.UserRepository;
+import com.murang.rental.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
  private final UserRepository userRepository;
 
