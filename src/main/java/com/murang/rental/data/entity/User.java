@@ -17,6 +17,9 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer num;
+
+    @Column(unique = true)
     private String userId;
 
     @Column(nullable = false)
@@ -42,8 +45,4 @@ public class User {
 
     @OneToMany
     private List<Articles> rentArticlesList = new ArrayList<>();
-
-    @OneToMany
-    private List<Articles> likeArticlesList = new ArrayList<>();
-
 }

@@ -2,7 +2,11 @@ package com.murang.rental.service;
 
 import com.murang.rental.data.dto.ArticleDto;
 import com.murang.rental.data.entity.Articles;
+import com.murang.rental.data.entity.HeartArticle;
+import com.murang.rental.data.entity.User;
 import com.murang.rental.data.repository.ArticlesRepository;
+import com.murang.rental.data.repository.HeartRepository;
+import com.murang.rental.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,29 +19,33 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
-@Transactional
 public class ArticleService {
 
     ArticlesRepository articlesRepository;
-
     EntityManager em;
+    HeartRepository heartRepository;
+    UserRepository userRepository;
 
     @Autowired
-    public ArticleService(ArticlesRepository articlesRepository, EntityManager em) {
+    public ArticleService(ArticlesRepository articlesRepository, EntityManager em, HeartRepository heartRepository, UserRepository userRepository) {
         this.articlesRepository = articlesRepository;
         this.em = em;
+        this.heartRepository = heartRepository;
+        this.userRepository = userRepository;
     }
 
-    public ArticleDto insertArticle(ArticleDto articleDto, MultipartFile image) throws IOException {
+    @Transactional
+    public void insertArticle(ArticleDto articleDto, MultipartFile image) throws IOException {
         Articles article = new Articles(articleDto);
         article.setPublishDay(LocalDateTime.now());
         String filePathAndUpload = getFilePathAndUpload(image);
         article.setFilePath(filePathAndUpload);
 
         Articles savedArticle = articlesRepository.save(article);
-        return Articles.articleFactory(savedArticle);
+        Articles.articleFactory(savedArticle);
     }
 
     @Transactional(readOnly = true)
@@ -55,17 +63,42 @@ public class ArticleService {
         return articleInfo;
     }
 
-    public void likeArticle(Integer id) {
-        //TODO 2023-09-21 user 엔티티의 likeArticleList에 넣기
+    @Transactional(readOnly = true)
+    public boolean heartArticleSearch(String userId, Integer articleId) {
+        Optional<HeartArticle> heartArticle = heartRepository.findByUserIdAndArticleId(userId, articleId);
+        return heartArticle.isPresent();
     }
 
-    /**
-     * file upload 후 file path 가져오는 메서드
-     *
-     * @param image
-     * @return
-     * @throws IOException
-     */
+    @Transactional
+    public void heartArticle(String userId, Integer articleId) {
+        HeartArticle build = new HeartArticle(userId, articleId);
+        heartRepository.save(build);
+    }
+
+    @Transactional
+    public void heartArticleDelete(String userId, Integer articleId) {
+        heartRepository.deleteByUserIdAndArticleId(userId, articleId);
+    }
+
+    @Transactional
+    public void rentalArticle(String userId, Integer articleId) {
+        User user = userRepository.findByUserId(userId).get();
+        Articles articles = articlesRepository.findById(articleId).get();
+        if(!articles.isStatus()) {
+            List<Articles> rentArticlesList = user.getRentArticlesList();
+            rentArticlesList.add(articles);
+            user.setRentArticlesList(rentArticlesList);
+            articles.setStatus(true);
+            em.persist(user);
+            em.persist(articles);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public List<Articles> rentalArticleList(String userId) {
+        return userRepository.findByUserId(userId).get().getRentArticlesList();
+    }
+
     private String getFilePathAndUpload(MultipartFile image) throws IOException {
         String filePath = "articleImage\\" + image.getOriginalFilename();
         File dest = new File(filePath);

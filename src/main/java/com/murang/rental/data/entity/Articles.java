@@ -32,17 +32,15 @@ public class Articles {
 
     private Integer period;
 
-    private Integer status;
-
     private String filePath;
 
     private String description;
 
-    private boolean heart;
-
     private boolean articleDelete;
 
     private boolean mine;
+
+    private boolean status;
 
     @ManyToOne
     @ToString.Exclude
@@ -61,21 +59,19 @@ public class Articles {
         this.stock = articleDto.getStock();
         this.price = articleDto.getPrice();
         this.period = articleDto.getPeriod();
-        this.status = articleDto.getStatus();
         this.description = articleDto.getDescription();
-        this.heart = articleDto.isHeart();
     }
 
     public static ArticleDto articleFactory(Articles articles) {
         return ArticleDto.builder()
+                .id(articles.getArticleId())
                 .title(articles.getTitle())
                 .publishDay(articles.getPublishDay())
                 .stock(articles.getStock())
                 .price(articles.getPrice())
                 .period(articles.getPeriod())
-                .status(articles.getStatus())
                 .description(articles.getDescription())
-                .heart(articles.isHeart())
+                .status(articles.isStatus())
                 .build();
     }
 }

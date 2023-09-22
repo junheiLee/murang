@@ -23,10 +23,7 @@ public class ArticleDto {
 
     private Integer period;
 
-    private Integer status;
-
     private String description;
 
-    private boolean heart;
-
+    private boolean status;
 }
