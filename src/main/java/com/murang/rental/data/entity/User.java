@@ -3,13 +3,8 @@ package com.murang.rental.data.entity;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,7 +16,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(name = "user_Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String userId;
 
     @Column(nullable = false)
@@ -43,5 +38,12 @@ public class User {
     private Locations locations;
 
     @OneToMany
-    private List<Articles> articlesList = new ArrayList<>();
+    private List<Articles> makenArticlesList = new ArrayList<>();
+
+    @OneToMany
+    private List<Articles> rentArticlesList = new ArrayList<>();
+
+    @OneToMany
+    private List<Articles> likeArticlesList = new ArrayList<>();
+
 }

@@ -1,15 +1,21 @@
 package com.murang.rental.data.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
+@Builder
 public class ArticleDto {
 
+    private Integer id;
+
     private String title;
+
+    private LocalDateTime publishDay;
 
     private Integer stock;
 
@@ -17,17 +23,10 @@ public class ArticleDto {
 
     private Integer period;
 
+    private Integer status;
+
     private String description;
 
-    private boolean articleDelete;
+    private boolean heart;
 
-    @Builder
-    public ArticleDto(String title, LocalDateTime publishDay, Integer stock, Integer price, Integer period, String description, boolean articleDelete) {
-        this.title = title;
-        this.stock = stock;
-        this.price = price;
-        this.period = period;
-        this.description = description;
-        this.articleDelete = articleDelete;
-    }
 }

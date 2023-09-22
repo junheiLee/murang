@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function like(a){
+            alert("찜 하셨습니다.");
+            location.href="/articles/like?id="+a;
+        }
+        function cancel(a){
+            alert("찜을 취소했습니다.");
+            location.href="/articles/cancelLike?id="+a;
+        }
+    </script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>이미지</th>
+        <th>제목</th>
+        <th>등급</th>
+        <th>가격</th>
+        <th>기간</th>
+        <th>출시일</th>
+    </tr>
+    <tr>
+        <td><img th:src="'\\'+${filePath}" alt="Image" width="100"/></a></td>
+        <td th:text="${articleDto.title}"></td>
+        <td th:text="${articleDto.status}"></td>
+        <td th:text="${articleDto.price}"></td>
+        <td th:text="${articleDto.period}"></td>
+        <td th:text="${articleDto.publishDay}"></td>
+    </tr>
+    <a th:onclick="like(${session.userId})" th:if="${articleDto.heart == false}"><span style="color: black">찜</span></a>
+    <a th:onclick="cancel(${session.userId})" th:if="${articleDto.heart == true}"><span style="color: red">찜</span></a>
+</table>
+</body>
+</html>

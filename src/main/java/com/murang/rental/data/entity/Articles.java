@@ -1,9 +1,10 @@
 package com.murang.rental.data.entity;
 
 import com.murang.rental.data.dto.ArticleDto;
-import lombok.*;
-import org.springframework.core.io.Resource;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,9 +32,13 @@ public class Articles {
 
     private Integer period;
 
+    private Integer status;
+
     private String filePath;
 
     private String description;
+
+    private boolean heart;
 
     private boolean articleDelete;
 
@@ -52,12 +57,13 @@ public class Articles {
 
     public Articles(ArticleDto articleDto) {
         this.title = articleDto.getTitle();
-        this.publishDay = LocalDateTime.now();
+        this.publishDay = articleDto.getPublishDay();
         this.stock = articleDto.getStock();
         this.price = articleDto.getPrice();
         this.period = articleDto.getPeriod();
+        this.status = articleDto.getStatus();
         this.description = articleDto.getDescription();
-        this.articleDelete = articleDto.isArticleDelete();
+        this.heart = articleDto.isHeart();
     }
 
     public static ArticleDto articleFactory(Articles articles) {
@@ -67,8 +73,9 @@ public class Articles {
                 .stock(articles.getStock())
                 .price(articles.getPrice())
                 .period(articles.getPeriod())
+                .status(articles.getStatus())
                 .description(articles.getDescription())
-                .articleDelete(articles.isArticleDelete())
+                .heart(articles.isHeart())
                 .build();
     }
 }
