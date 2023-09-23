@@ -1,7 +1,6 @@
 package com.murang.rental.service;
 
 import com.murang.rental.data.dto.ArticleRegisterDto;
-import com.murang.rental.data.dto.LocationDto;
 import com.murang.rental.data.entity.Articles;
 import com.murang.rental.data.entity.HeartArticle;
 import com.murang.rental.data.entity.User;
@@ -50,17 +49,19 @@ public class ArticleService {
         return articlesRepository.findAll();
     }
 
-//    @Transactional(readOnly = true)
+    //    @Transactional(readOnly = true)
 //    public List<Articles> articleList(LocationDto locationDto) {
 //        return articlesRepository.findAllByLocation(locationDto.getSido());
 //    }
     @Transactional
-    public void insertArticle(ArticleRegisterDto articleRegisterDto, MultipartFile image) throws IOException {
+    public void insertArticle(ArticleRegisterDto articleRegisterDto, MultipartFile image, String userId) throws IOException {
+        User user = userRepository.findByUserId(userId).get();
         Articles article = new Articles(articleRegisterDto);
         article.setPublishDay(LocalDateTime.now());
 
         String filePathAndUpload = getFilePathAndUpload(image);
         article.setFilePath(filePathAndUpload);
+        article.setUser(user);
 
         Articles savedArticle = articlesRepository.save(article);
         Articles.articleFactory(savedArticle);
@@ -96,9 +97,9 @@ public class ArticleService {
 
     @Transactional
     public void rentalArticle(String userId, Integer articleId) {
-        User user = userRepository.findById(userId).get();
+        User user = userRepository.findByUserId(userId).get();
         Articles articles = articlesRepository.findById(articleId).get();
-        if(!articles.isStatus()) {
+        if (!articles.isStatus()) {
             List<Articles> rentArticlesList = user.getRentArticlesList();
             rentArticlesList.add(articles);
             user.setRentArticlesList(rentArticlesList);
@@ -110,7 +111,7 @@ public class ArticleService {
 
     @Transactional(readOnly = true)
     public List<Articles> rentalArticleList(String userId) {
-        return userRepository.findById(userId).get().getRentArticlesList();
+        return userRepository.findByUserId(userId).get().getRentArticlesList();
     }
 
     private String getFilePathAndUpload(MultipartFile image) throws IOException {

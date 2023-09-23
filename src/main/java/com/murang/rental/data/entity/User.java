@@ -25,7 +25,7 @@ public class User {
     private Integer num;
 
     @Column(unique = true, nullable = false)
-    private String id;
+    private String userId;
 
     @Column(nullable = false)
     private String password;
@@ -55,7 +55,7 @@ public class User {
 
 
     public User(UserDto userDto) {
-        this.id = userDto.getId();
+        this.userId = userDto.getId();
         this.password = userDto.getPassword();
         this.name = userDto.getName();
         this.grade = userDto.getGrade();

@@ -1,5 +1,6 @@
 package com.murang.rental.service.impl;
 
+import com.murang.rental.data.dto.LoginDto;
 import com.murang.rental.data.dto.UserDto;
 import com.murang.rental.data.entity.User;
 import com.murang.rental.data.repository.UserRepository;
@@ -7,6 +8,8 @@ import com.murang.rental.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Service
@@ -30,8 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String isDuplicate(String id) {
-        System.out.println("서비스");
-        if(userRepository.existsUserById(id)){
+        if(userRepository.existsByUserId(id)){
             return "중복 아이디 입니당";
         }else{
             return "사용가능한 아이디 입니당";
@@ -40,8 +42,16 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findUserById(String id){
-        return userRepository.findUserById(id).get();
+        return userRepository.findByUserId(id).get();
     }
 
-
+    public String loginCheck(LoginDto loginDto, HttpSession session){
+        Optional<User> user = userRepository.findByUserIdAndPassword(loginDto.getUserId(), loginDto.getPassword());
+        if(user.isPresent()){
+            session.setAttribute("userId", loginDto.getUserId());
+            return "redirect:/articles";
+        } else{
+            return "loginError";
+        }
+    }
 }
