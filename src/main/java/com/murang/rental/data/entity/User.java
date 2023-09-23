@@ -41,8 +41,5 @@ public class User {
     private Locations locations;
 
     @OneToMany
-    private List<Articles> makenArticlesList = new ArrayList<>();
-
-    @OneToMany
     private List<Articles> rentArticlesList = new ArrayList<>();
 }
