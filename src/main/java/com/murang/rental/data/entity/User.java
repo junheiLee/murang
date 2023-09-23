@@ -1,45 +1,64 @@
 package com.murang.rental.data.entity;
 
+import com.murang.rental.data.dto.UserDto;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.xml.stream.Location;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Table(name = "user")
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer num;
 
-    @Column(unique = true)
-    private String userId;
+    @Column(unique = true,nullable = false)
+    private String id;
 
     @Column(nullable = false)
     private String password;
 
     @ColumnDefault("3")
-    private int grade;
+    @Column(insertable = false)
+    private Double grade;
 
     @ColumnDefault("1")
+    @Column(insertable = false)
     private int member_status;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String nickname;
+//    @Column(nullable = false)
+//    private String nickname;
 
     @OneToOne
     private Locations locations;
 
     @OneToMany
     private List<Articles> rentArticlesList = new ArrayList<>();
+
+
+
+    public User(UserDto userDto) {
+        this.id = userDto.getId();
+        this.password = userDto.getPassword();
+        this.name = userDto.getName();
+        this.grade = userDto.getGrade();
+    }
+
+
+
+
 }

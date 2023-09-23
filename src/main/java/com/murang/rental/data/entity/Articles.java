@@ -1,6 +1,7 @@
 package com.murang.rental.data.entity;
 
 import com.murang.rental.data.dto.ArticleDto;
+import com.murang.rental.data.dto.ArticleRegisterDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,20 +47,22 @@ public class Articles {
     @ToString.Exclude
     private User user;
 
-    @ManyToOne
-    @ToString.Exclude
-    private Categories category;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Locations location;
 
-    public Articles(ArticleDto articleDto) {
-        this.title = articleDto.getTitle();
-        this.publishDay = articleDto.getPublishDay();
-        this.stock = articleDto.getStock();
-        this.price = articleDto.getPrice();
-        this.period = articleDto.getPeriod();
-        this.description = articleDto.getDescription();
+    public Articles(ArticleRegisterDto articleRegisterDto) {
+        this.title = articleRegisterDto.getTitle();
+        this.publishDay = articleRegisterDto.getPublishDay();
+        this.stock = articleRegisterDto.getStock();
+        this.price = articleRegisterDto.getPrice();
+        this.period = articleRegisterDto.getPeriod();
+        this.description = articleRegisterDto.getDescription();
+        this.category = articleRegisterDto.getCategory();
+
+        this.location = new Locations(articleRegisterDto);
     }
 
     public static ArticleDto articleFactory(Articles articles) {
