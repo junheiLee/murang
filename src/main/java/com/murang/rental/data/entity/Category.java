@@ -1,5 +1,5 @@
 package com.murang.rental.data.entity;
 
 public enum Category {
-    CATEGORY1, CATEGORY2, CATEGORY3, CATEGORY4
+    낚시용품, 도서, 전자기기, 의류, 운동기구, 캠핑용품
 }
