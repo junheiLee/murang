@@ -23,7 +23,7 @@
         </div>
 
         <ul class="article-content">
-            <div th:if="${articlesList == null or #lists.isEmpty(articlesList)}" class="no-article">
+            <div th:if="${articlesList} == null" class="no-article">
                 등록된 상품이 없습니다
             </div>
             <li class="article-product" th:each="article: ${articlesList}">
