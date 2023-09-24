@@ -49,8 +49,12 @@ public class ArticleController {
      * @return 상품 등록 폼
      */
     @GetMapping("/new")
-    public String newArticleForm() {
-        return "articles/form";
+    public String newArticleForm(HttpSession session) {
+        if(session.getAttribute("userId") != null) {
+            return "articles/form";
+        }else{
+            return "login";
+        }
     }
 
     /**

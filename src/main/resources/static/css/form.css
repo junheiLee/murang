@@ -1,0 +1,101 @@
+.sign-wrap{
+  width:1903px;
+  margin: 0 auto;
+}
+#signprod{
+  width:800px;
+  height: 600px;
+  margin: 0 auto;
+}
+.sign-left{
+  width:300px;
+  height: 400px;
+  float:left;
+  padding:20px;
+  padding-left: 0;
+}
+.sign-right{
+  width:500px;
+  height: 400px;
+  float:right;
+  margin-top: 20px;
+  border: 1px solid #bbb;
+  padding:20px;
+}
+#image_container{
+  width:250px;
+  height: 300px;
+  border: 1px solid #bbb;
+}
+
+.prod-explan{
+  width:800px;
+  height: 200px;
+  margin-top: 20px;
+  border: 1px solid #bbb;
+  position: relative;
+}
+
+.left-explan{
+  width: 120px;
+  height: 100%;
+  line-height: 200px;
+  float:left;
+  padding-left: 20px;
+}
+.right-explan{
+  width:678px;
+  height: 158px;
+  float:left;
+}
+.right-explan textarea{
+  padding: 20px;
+  width:100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+}
+#prod-submit{
+  position: absolute;
+  right:10px;
+  bottom:10px;
+  padding: 5px;
+  background-color: #bbb;
+  border: none;
+  color:#fff;
+  cursor: pointer;
+}
+.prod-left{
+  width:100px;
+  float:left;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.prod-right{
+  width:350px;
+  float:right;
+  margin-bottom: 10px;
+}
+.prod-right input{
+  width:100%;
+  height: 30px;
+}
+.prod-right select{
+  width:100%;
+  height: 30px;
+}
+.locationsearch input{
+  width:100%;
+  margin-bottom: 10px;
+  height: 30px;
+}
+
+#locationsearchs{
+  display: inline;
+  border: 1px solid #bbb;
+  padding: 5px;
+  float:right;
+  cursor: pointer;
+}
