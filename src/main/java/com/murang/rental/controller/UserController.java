@@ -56,7 +56,6 @@ public class UserController {
 
     @PostMapping("/loginCheck")
     private String loginCheck(@ModelAttribute LoginDto loginDto, HttpSession session) {
-        System.out.println(loginDto);
         return userService.loginCheck(loginDto, session);
     }
 

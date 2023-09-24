@@ -136,7 +136,17 @@ header {
 .header-menu li a:hover {
     color: #afacac;
 }
-
+#loginbtn{
+cursor:pointer;
+float:right;
+}
+#loginbtn:hover{
+color:#bbb;
+}
+#loginbtn:hover i{
+border:1px solid #bbb;
+color:#bbb;
+}
 
 
 

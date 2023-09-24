@@ -17,7 +17,7 @@
 
     <div class="zzim1">
         <div class="zzim2">찜한상품</div>
-        <a href="/users/mypage?like=1"><i class="fa-solid fa-heart"></i> 1</a>
+        <a href="/users/mypage?like=1"><i class="fa-solid fa-heart"></i><span th:if="${session.userId == null}">0</span><span th:if="${session.userId != null}" th:text="|&nbsp; ${session.zzim}|"></span></a>
     </div>
 
     <div class="upbtn" onclick=" window.scrollTo({ top: 0, behavior: 'smooth' });">
@@ -40,13 +40,13 @@
                         </form>  
                     </div>
 
-                    <p th:if="${#session.getAttribute('userId') == null}" id="loginbtn"><i class="fa-solid fa-user"></i>&nbsp;로그인</p>
-                    <a th:if="${#session.getAttribute('userId') != null}" href="#" class="logoutbtn"><i class="fa-solid fa-user" th:text="|&nbsp; ${session.userId}|"></i></a>
-                    <a th:if="${#session.getAttribute('userId') != null}" href="#" class="logoutbtn">로그아웃</a>
+                    <a th:if="${session.userId == null}" href="/users/loginform" id="loginbtn"><i class="fa-solid fa-user"></i>&nbsp;로그인</a>
+                    <a th:if="${session.userId != null}" href="/users/mypage" class="logoutbtn"><i class="fa-solid fa-user" th:text="|&nbsp; ${session.userId}|"></i></a>
+                    <a th:if="${session.userId != null}" href="/users/logout" class="logoutbtn">로그아웃</a>
                 </div>
                 <ul>
-                    <li><a href="#">상품 렌트</a></li>
-                    <li><a href="#">상품 등록</a></li>
+                    <li><a href="/articles">상품 렌트</a></li>
+                    <li><a href="/articles/new">상품 등록</a></li>
                     <li><a href="#">머랭톡</a></li>
                 </ul>
             </div>
