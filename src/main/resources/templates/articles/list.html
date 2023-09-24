@@ -3,27 +3,47 @@
 <head>
     <div th:replace="/fragment/header.html :: fragment-head"></div>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>상품리스트</title>
+    <link href="/css/article.css" rel="stylesheet">
 </head>
 <body>
 <div th:replace="/fragment/header.html :: fragment-header"></div>
-<table border="1">
-    <tr>
-        <th>제목</th>
-        <th>게시일</th>
-        <th>재고</th>
-        <th>가격</th>
-        <th>기간</th>
-        <th>이미지</th>
-    </tr>
-    <tr th:each="article: ${articlesList}">
-        <td th:text="${article.title}"></td>
-        <td th:text="${article.publishDay}"></td>
-        <td th:text="${article.stock}"></td>
-        <td th:text="${article.price}"></td>
-        <td th:text="${article.period}"></td>
-        <td><a th:href="'/articles/'+${article.articleId}"><img th:src="'\\'+${article.filePath}" alt="Image" width="100" /></a></td>
-    </tr>
-</table>
+
+<div class="article-wrap">
+    <div class="article-main">
+
+        <div class="article-category">
+            <div class="category-explan">카테고리</div>
+            <select th:name="category">
+                <option th:each="categoryValue : ${T(com.murang.rental.data.entity.Category).values()}"
+                        th:value="${categoryValue.name()}" th:text="${categoryValue.name()}">
+                    val
+                </option>
+            </select>
+        </div>
+
+        <ul class="article-content">
+            <div th:if="${articlesList} == null" class="no-article">
+                등록된 상품이 없습니다
+            </div>
+            <li class="article-product" th:each="article: ${articlesList}">
+            <a th:href="'/articles/'+${article.articleId}">
+                <h1 th:text="|상품명 ${article.title}|">상품명 (상품명)<span th:text="|렌트기간 ${article.period}|">렌트기간 (날짜)</span></h1>
+                <img th:src="'\\'+${article.filePath}" alt="상품" />
+                <h1 th:text="|가격 ${article.price}|">가격 (가격)<span th:text="|등록날짜 ${article.publishDay}|">등록날짜 (등록날짜)</span></h1>
+            </a></li>
+        </ul>
+
+    </div>
+</div>
+
+
+
+<div style="clear: both;"></div>
+
+
+<div th:replace="/fragment/footer.html :: fragment-footer"></div>
+
+
 </body>
 </html>
