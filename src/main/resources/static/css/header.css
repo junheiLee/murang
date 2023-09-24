@@ -11,7 +11,9 @@
     box-sizing: border-box;
     font-family: 'NanumSquareNeo-Variable';
 }
-
+body{
+margin:0 auto;
+}
 li {
     list-style: none;
 }
@@ -33,6 +35,7 @@ a:visited {
     z-index: 20;
     border: 1px solid #bbb;
     padding: 10px;
+    background-color: #fff;
 }
 .zzim2{
     font-size: 12px;
@@ -59,6 +62,7 @@ width: 100%;
     border: 1px solid #bbb;
     padding: 10px;
     width:67px;
+    background-color: #fff;
 }
 .upbtn2{
     font-size: 12px;
@@ -67,10 +71,9 @@ width: 100%;
     text-align: center;
 }
 
-
 .header-wrap {
     margin: 0 auto;
-    width: 100%;
+    width: 1903px;
     height: 80px;
     background-color: antiquewhite;
 }
@@ -90,17 +93,30 @@ header {
 }
 
 .header-login {
+    width:500px;
     float: right;
     font-size: 18px;
 }
 
 .header-login p {
     cursor: pointer;
-    display: inline;
+    float: right;
 }
 
 .header-menu {
     width: 100%;
+}
+.logoutbtn{
+    height: 40px; float: left;width: 200px; margin-left: 20px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+}
+.logoutbtn:hover{
+    color:#bbb;
+}
+.logoutbtn:hover i{
+    border: 1px solid #bbb;
 }
 
 .header-menu li {
@@ -123,10 +139,12 @@ header {
 
 
 
+
+
 /* 검색바 */
 
 .searchbar {
-    width: 400px;
+    width: 250px;
     height: 40px;
     float: left;
     position: relative;
@@ -135,7 +153,7 @@ header {
 
 .searchbar .searchbox {
     float: right;
-    width: 50%;
+    width: 100%;
     height: 40px;
     border: none;
     border-radius: 100px;
@@ -153,38 +171,9 @@ header {
 /* 검색바 */
 
 
-/* 로그인 팝업창*/
-
-
-.loginbgout {
-    display: none;
-    position: fixed;
-    z-index: 555;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .loginbgin {
-    position: absolute;
-    width: 400px;
-    height: 250px;
-    background-color: #fff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    padding: 20px;
-  }
-  .loginbgin h1{
-    text-align: center;
-  }
-  .loginbgin a{
-    margin-top: 48.75px;
-    display: block;
-  }
-
-/* 로그인 팝업창 종료*/
+#logoutbtn{
+    height: 80px;
+}
 
 
 
@@ -192,6 +181,204 @@ header {
 
 
 
+
+footer{
+    width:1903px;
+    height: 100px;
+    margin: 0 auto;
+      margin-top: 100px;
+          margin-bottom:30px;
+}
+
+.footer-wrap{
+    border-top: 1px solid #ddd;
+    width:1000px;
+    margin: 0 auto;
+}
+.footer-wrap div{
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+
+
+
+/*로그인 템플릿  */
+.loginformwrap{
+    width:1903px;
+margin: 0 auto;
+}
+
+.loginform{
+    width:500px;
+    margin-top: 100px;
+    margin: 0 auto;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.login {
+    margin-top: 100px;
+  width: 420px;
+  background: #ffffff;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.login .form {
+  display: block;
+  position: relative;
+}
+.login .form h2 {
+  background: #f5f5fa;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 30px 0;
+  padding: 40px;
+  font-weight: 200;
+  color: #9596A2;
+  font-size: 19px;
+}
+.login .form .form-field {
+  display: flex;
+  align-items: center;
+  height: 55px;
+  margin: 0 40px 30px 40px;
+  border-bottom: 1px solid #9596A2;
+}
+.login .form .form-field label {
+  width: 10px;
+  padding: 0 15px 0 0;
+  color: #9596A2;
+}
+.login .form .form-field input {
+  width: 100%;
+  background: transparent;
+  color: #9596A2;
+  padding: 15px;
+  border: 0;
+  margin: 0;
+}
+.login .form .form-field input + svg {
+  width: 35px;
+  width: 35px;
+  fill: none;
+  stroke: #00FCD1;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: -100;
+
+}
+.login .form .form-field input:valid + svg {
+  stroke-dashoffset: 0;
+}
+.login .form .form-field input:focus {
+  outline: none;
+}
+.login .form .form-field *::-moz-placeholder {
+  color: #9596A2;
+}
+.login .form .form-field *::placeholder {
+  color: #9596A2;
+}
+.login .form .button {
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0 40px 45px 40px;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+}
+.login .form .button .arrow-wrapper {
+  transition: all 0.45s ease-in-out;
+  position: relative;
+  margin: 0;
+  width: 100%;
+  height: 55px;
+  right: 0;
+  float: right;
+  background: linear-gradient(90deg, #04DFBD, #00FCD1);
+  box-shadow: 0 3px 20px rgba(0, 252, 209, 0.4);
+  border-radius: 12px;
+}
+.login .form .button .arrow-wrapper .arrow {
+  position: absolute;
+  top: 50%;
+  margin: auto;
+  transition: all 0.45s ease-in-out;
+  right: 35px;
+  width: 15px;
+  height: 2px;
+  background: none;
+  transform: translateY(-50%);
+}
+.login .form .button .arrow-wrapper .arrow:before {
+  position: absolute;
+  content: "";
+  top: -4px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(45deg);
+}
+.login .form .button .button-text {
+  transition: all 0.45s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  line-height: 55px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.login .finished {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 7;
+}
+.login .finished svg {
+  width: 100px;
+  width: 100px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: -100;
+  transition: all 0.3s ease-in-out 0.5s;
+}
+.login.loading .form .button .arrow-wrapper {
+  width: 55px;
+  animation: sk-rotateplane 1.2s infinite ease-in-out 0.5s;
+}
+.login.loading .form .button .arrow-wrapper .arrow {
+  background: #fff;
+  transform: translate(15px, 0);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out 0.5s;
+}
+.login.loading .form .button .button-text {
+  color: #9596A2;
+}
+
+/* 로그인 끝*/
 
 
 

@@ -52,16 +52,14 @@ submitBtn.prop("disabled", true);
     <input type="text" name="name" />
     <br>
     지역
-    <input id="sido" name="sido" type="text" placeholder="시/도" readonly>
+    <input id="sido" name="sido" type="text" placeholder="시/도" readonly required>
     <input id="sigungu" name="sigungu" type="text" placeholder="시/군/구" readonly>
     <input id="bname" name="bname" type="text" placeholder="동/리" readonly>
     <input type="button" onclick="findAddr()" value="주소검색"/><br>
-
-    <input type="text" name="location" /><br>
     <input type="submit" id="smit" value="가입" />
 
 </form>
-
+<div th:replace="/fragment/footer.html :: fragment-footer"></div>
 </body>
 <script>
     function findAddr() {

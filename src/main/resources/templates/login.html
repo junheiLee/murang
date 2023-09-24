@@ -6,16 +6,45 @@
 </head>
 <body>
 <div th:replace="/fragment/header.html :: fragment-header"></div>
-<h1>login</h1>
-<form action="/users/loginCheck">
-    <table border="1">
-        <tr>
-            <td>아이디: <input type="text" name="userId" required></td>
-            <td>비밀번호: <input type="password" name="password" required></td>
-        </tr>
-    </table>
-    <input type="submit" value="로그인"/>
-    <a href="/users/register">회원가입</a>
-</form>
+
+<div class="loginformwrap">
+    <div class="loginform">
+        <form action="/users/loginCheck" method="post">
+            <div class="login">
+                <div class="form">
+                    <h2><img src="/image/ajfod.png" width="50" style="vertical-align: bottom;">머랭</h2>
+                    <div class="form-field">
+                        <label for="login-mail"><i class="fa fa-user"></i></label>
+                        <input id="login-mail" type="text" name="userId" placeholder="ID" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                        <svg>
+                            <use href="#svg-check" />
+                        </svg>
+                    </div>
+                    <div class="form-field">
+                        <label for="login-password"><i class="fa fa-lock"></i></label>
+                        <input id="login-password" type="password" name="password" placeholder="Password" minlength="4" required>
+                        <svg>
+                            <use href="#svg-check" />
+                        </svg>
+                    </div>
+                    <button type="submit" class="button">
+                        <div class="arrow-wrapper">
+                            <span class="arrow"></span>
+                        </div>
+                        <p class="button-text">SIGN IN</p>
+                    </button>
+                </div>
+                <div class="finished">
+                    <svg>
+                        <use href="#svg-check" />
+                    </svg>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div th:replace="/fragment/footer.html :: fragment-footer"></div>
+
 </body>
 </html>

@@ -33,15 +33,19 @@ public class UserController {
             model.addAttribute("user", user);
             return "mypage";
         } else {
-            return "login";        //수정필요 login페이지로
+            return "login";
         }
 
     }
 
+    @GetMapping("/loginform")
+    public String loginForm(){
+        return "login";
+    }
     @PostMapping("/join")
     public String join(UserRegisterDto userRegisterDto) {
         userService.insertUser(userRegisterDto);
-        return "test";
+        return "index";
     }
 
     @GetMapping("/check/{id}")
@@ -50,15 +54,16 @@ public class UserController {
         return userService.isDuplicate(id);
     }
 
-    @GetMapping("/loginCheck")
+    @PostMapping("/loginCheck")
     private String loginCheck(@ModelAttribute LoginDto loginDto, HttpSession session) {
+        System.out.println(loginDto);
         return userService.loginCheck(loginDto, session);
     }
 
     @GetMapping("/logout")
     private String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/users/mypage";
+        return "index";
     }
 
     @ResponseBody

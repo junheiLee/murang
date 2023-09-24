@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragment/header.html :: fragment-head"></div>
+    <title>머랭홈</title>
+    <link href="/css/index.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/fragment/header.html :: fragment-header"></div>
+<div class="main-banner">
+    <img src="/image/mainmurang.jpg" width="1903" alt="배너" />
+    <h1>이용후기</h1>
+    <div class="reviews">
+        <div class="review-box">
+            <div class="review-profile">
+                <div class="profile-photo"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="review-name">이준희</div>
+            </div>
+            <div class="review-content">집안에 사용하지 않는 물품을 공유하면서 일석이조의 효과를 누린 것 같아요</div>
+        </div>
+        <div class="review-box">
+            <div class="review-profile">
+                <div class="profile-photo"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="review-name">이나은</div>
+            </div>
+            <div class="review-content">잠깐 사용해 보고 싶은 물건을 <br>섣불리 사서 쓸데없는 지출을 하지 않고 체험해 볼 수 있어서 좋았어요!</div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+<div th:replace="/fragment/footer.html :: fragment-footer"></div>
+
+</body>
+</html>
