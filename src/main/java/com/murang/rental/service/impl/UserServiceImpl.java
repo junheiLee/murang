@@ -1,14 +1,14 @@
 package com.murang.rental.service.impl;
 
-import com.murang.rental.data.dto.LoginDto;
-import com.murang.rental.data.dto.UserDto;
+import com.murang.rental.data.dto.user.LoginDto;
+import com.murang.rental.data.dto.user.UserDto;
+import com.murang.rental.data.dto.user.UserRegisterDto;
 import com.murang.rental.data.entity.User;
 import com.murang.rental.data.repository.UserRepository;
 import com.murang.rental.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
      * @Param user entity
      */
     @Override
-    public void insertUser(UserDto userDto) {
+    public void insertUser(UserRegisterDto userRegisterDto) {
 
-        User user = new User(userDto);
+        User user = new User(userRegisterDto);
         userRepository.save(user);
 
     }

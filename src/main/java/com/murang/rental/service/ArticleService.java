@@ -1,6 +1,6 @@
 package com.murang.rental.service;
 
-import com.murang.rental.data.dto.ArticleRegisterDto;
+import com.murang.rental.data.dto.article.ArticleRegisterDto;
 import com.murang.rental.data.entity.Articles;
 import com.murang.rental.data.entity.HeartArticle;
 import com.murang.rental.data.entity.User;

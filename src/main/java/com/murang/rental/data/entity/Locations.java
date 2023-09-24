@@ -1,6 +1,7 @@
 package com.murang.rental.data.entity;
 
-import com.murang.rental.data.dto.ArticleRegisterDto;
+import com.murang.rental.data.dto.LocationDto;
+import com.murang.rental.data.dto.article.ArticleRegisterDto;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -24,9 +25,9 @@ public class Locations {
     private String sigugun;
     private String bname;
 
-    public Locations(ArticleRegisterDto articleRegisterDto) {
-        this.sido = articleRegisterDto.getSido();
-        this.sigugun = articleRegisterDto.getSigugun();
-        this.bname = articleRegisterDto.getBname();
+    public Locations(LocationDto locationDto) {
+        this.sido = locationDto.getSido();
+        this.sigugun = locationDto.getSigugun();
+        this.bname = locationDto.getBname();
     }
 }

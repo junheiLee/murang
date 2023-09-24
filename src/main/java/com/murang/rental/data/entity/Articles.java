@@ -1,7 +1,8 @@
 package com.murang.rental.data.entity;
 
-import com.murang.rental.data.dto.ArticleDto;
-import com.murang.rental.data.dto.ArticleRegisterDto;
+import com.murang.rental.data.dto.LocationDto;
+import com.murang.rental.data.dto.article.ArticleDto;
+import com.murang.rental.data.dto.article.ArticleRegisterDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -62,7 +63,10 @@ public class Articles {
         this.description = articleRegisterDto.getDescription();
         this.category = articleRegisterDto.getCategory();
 
-        this.location = new Locations(articleRegisterDto);
+        this.location = new Locations(LocationDto.builder()
+                .sido(articleRegisterDto.getSido())
+                .sigugun(articleRegisterDto.getSigugun())
+                .bname(articleRegisterDto.getBname()).build());
     }
 
     public static ArticleDto articleFactory(Articles articles) {

@@ -1,4 +1,4 @@
-package com.murang.rental.data.dto;
+package com.murang.rental.data.dto.user;
 
 import lombok.Data;
 

@@ -1,6 +1,8 @@
 package com.murang.rental.data.entity;
 
-import com.murang.rental.data.dto.UserDto;
+import com.murang.rental.data.dto.LocationDto;
+import com.murang.rental.data.dto.user.UserDto;
+import com.murang.rental.data.dto.user.UserRegisterDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,8 +46,8 @@ public class User {
 //    @Column(nullable = false)
 //    private String nickname;
 
-    @OneToOne
-    private Locations locations;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Locations location;
 
     @OneToMany
     private List<Articles> makenArticlesList = new ArrayList<>();
@@ -59,6 +61,17 @@ public class User {
         this.password = userDto.getPassword();
         this.name = userDto.getName();
         this.grade = userDto.getGrade();
+    }
+
+    public User(UserRegisterDto userRegisterDto) {
+        this.userId = userRegisterDto.getId();
+        this.password = userRegisterDto.getPassword();
+        this.name = userRegisterDto.getName();
+        this.grade = userRegisterDto.getGrade();
+        this.location = new Locations(LocationDto.builder()
+                .sido(userRegisterDto.getSido())
+                .sigugun(userRegisterDto.getSigungu())
+                .bname(userRegisterDto.getBname()).build());
     }
 
 

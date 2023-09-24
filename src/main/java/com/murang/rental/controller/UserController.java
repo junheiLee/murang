@@ -1,7 +1,8 @@
 package com.murang.rental.controller;
 
-import com.murang.rental.data.dto.LoginDto;
-import com.murang.rental.data.dto.UserDto;
+import com.murang.rental.data.dto.user.LoginDto;
+import com.murang.rental.data.dto.user.UserDto;
+import com.murang.rental.data.dto.user.UserRegisterDto;
 import com.murang.rental.data.entity.User;
 import com.murang.rental.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -38,8 +39,8 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String join(UserDto userDto) {
-        userService.insertUser(userDto);
+    public String join(UserRegisterDto userRegisterDto) {
+        userService.insertUser(userRegisterDto);
         return "test";
     }
 

@@ -1,7 +1,7 @@
 package com.murang.rental.controller;
 
-import com.murang.rental.data.dto.ArticleDto;
-import com.murang.rental.data.dto.ArticleRegisterDto;
+import com.murang.rental.data.dto.article.ArticleDto;
+import com.murang.rental.data.dto.article.ArticleRegisterDto;
 import com.murang.rental.data.entity.Articles;
 import com.murang.rental.service.ArticleService;
 import lombok.RequiredArgsConstructor;

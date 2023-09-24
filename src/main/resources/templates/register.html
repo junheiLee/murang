@@ -52,10 +52,29 @@ submitBtn.prop("disabled", true);
     <input type="text" name="name" />
     <br>
     지역
+    <input id="sido" name="sido" type="text" placeholder="시/도" readonly>
+    <input id="sigungu" name="sigungu" type="text" placeholder="시/군/구" readonly>
+    <input id="bname" name="bname" type="text" placeholder="동/리" readonly>
+    <input type="button" onclick="findAddr()" value="주소검색"/><br>
+
     <input type="text" name="location" /><br>
     <input type="submit" id="smit" value="가입" />
 
 </form>
 
 </body>
+<script>
+    function findAddr() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+
+                document.getElementById('sido').value = data.sido;
+                document.getElementById('sigungu').value = data.sigungu;
+                document.getElementById('bname').value = data.bname;
+            }
+        }).open();
+    }
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </html>

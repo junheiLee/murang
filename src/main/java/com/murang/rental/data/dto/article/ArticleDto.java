@@ -1,4 +1,4 @@
-package com.murang.rental.data.dto;
+package com.murang.rental.data.dto.article;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
