@@ -1,13 +1,14 @@
 package com.murang.rental.data.entity;
 
 import com.murang.rental.data.dto.UserDto;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-import javax.xml.stream.Location;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer num;
 
-    @Column(unique = true,nullable = false)
-    private String id;
+    @Column(unique = true, nullable = false)
+    private String userId;
 
     @Column(nullable = false)
     private String password;
@@ -53,15 +54,12 @@ public class User {
     private List<Articles> rentArticlesList = new ArrayList<>();
 
 
-
     public User(UserDto userDto) {
-        this.id = userDto.getId();
+        this.userId = userDto.getId();
         this.password = userDto.getPassword();
         this.name = userDto.getName();
         this.grade = userDto.getGrade();
     }
-
-
 
 
 }

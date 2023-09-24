@@ -2,7 +2,6 @@ package com.murang.rental.controller;
 
 import com.murang.rental.data.dto.ArticleDto;
 import com.murang.rental.data.dto.ArticleRegisterDto;
-import com.murang.rental.data.dto.LocationDto;
 import com.murang.rental.data.entity.Articles;
 import com.murang.rental.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -50,8 +49,7 @@ public class ArticleController {
      * @return 상품 등록 폼
      */
     @GetMapping("/new")
-    public String newArticleForm(HttpSession session) {
-        session.setAttribute("userId", "123");
+    public String newArticleForm() {
         return "articles/form";
     }
 
@@ -59,14 +57,14 @@ public class ArticleController {
      * 상품 등록 로직
      *
      * @param articleRegisterDto 상품 등록 정보
-     * @param image      상품 이미지
+     * @param image              상품 이미지
      * @return 상품 목록 API
      * @throws IOException
      * @author kimjunyo
      */
     @PostMapping("/new")
-    public String registerArticle(@ModelAttribute ArticleRegisterDto articleRegisterDto, @RequestParam MultipartFile image) throws IOException {
-        articleService.insertArticle(articleRegisterDto, image);
+    public String registerArticle(@ModelAttribute ArticleRegisterDto articleRegisterDto, @RequestParam MultipartFile image, HttpSession session) throws IOException {
+        articleService.insertArticle(articleRegisterDto, image, (String) session.getAttribute("userId"));
         return "redirect:/articles";
     }
 
@@ -76,7 +74,7 @@ public class ArticleController {
      * @param articleId 해당 상품 id
      * @param session   로그인 된 유저 체킹
      * @param model     찜 여부, 이미지 파일 포함 상품 정보 담는 용도
-     * @return          상세페이지로 이동
+     * @return 상세페이지로 이동
      * @author kimjunyo
      */
     @GetMapping("/{articleId}")
@@ -104,7 +102,7 @@ public class ArticleController {
     @GetMapping("/rentals/{articleId}")
     public String rentalArticle(HttpSession session, @PathVariable Integer articleId) {
         articleService.rentalArticle((String) session.getAttribute("userId"), articleId);
-        return "redirect:/articles/rentals";
+        return "redirect:/articles";
     }
 
     @GetMapping("/rentals")

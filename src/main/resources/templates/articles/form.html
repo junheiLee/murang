@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <div th:replace="/fragment/header.html :: fragment-head"></div>
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
@@ -18,6 +19,7 @@
         }
     </script>
 </head>
+<div th:replace="/fragment/header.html :: fragment-header"></div>
 <body>
 <form method="post" action="/articles/new" enctype="multipart/form-data">
     <table border="1">

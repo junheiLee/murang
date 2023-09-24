@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <div th:replace="/fragment/header.html :: fragment-head"></div>
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
@@ -21,6 +22,7 @@
     </script>
 </head>
 <body>
+<div th:replace="/fragment/header.html :: fragment-header"></div>
 <table border="1">
     <tr>
         <th>이미지</th>

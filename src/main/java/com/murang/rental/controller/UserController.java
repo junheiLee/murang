@@ -1,5 +1,6 @@
 package com.murang.rental.controller;
 
+import com.murang.rental.data.dto.LoginDto;
 import com.murang.rental.data.dto.UserDto;
 import com.murang.rental.data.entity.User;
 import com.murang.rental.service.UserService;
@@ -25,15 +26,13 @@ public class UserController {
 
     @GetMapping("/mypage")
     public String mypage(HttpSession session, Model model) {
-        session.setAttribute("id", "test");
-        String id = (String) session.getAttribute("id");
+        String id = (String) session.getAttribute("userId");
         if (id != null) {
-           User user = userService.findUserById(id);
-           model.addAttribute("user",user);
-            System.out.println(user.getGrade());
+            User user = userService.findUserById(id);
+            model.addAttribute("user", user);
             return "mypage";
         } else {
-            return "mypage";        //수정필요 login페이지로
+            return "login";        //수정필요 login페이지로
         }
 
     }
@@ -47,10 +46,19 @@ public class UserController {
     @GetMapping("/check/{id}")
     @ResponseBody
     public String checkID(@PathVariable String id) {
-        System.out.println("컨트롤러");
         return userService.isDuplicate(id);
     }
 
+    @GetMapping("/loginCheck")
+    private String loginCheck(@ModelAttribute LoginDto loginDto, HttpSession session) {
+        return userService.loginCheck(loginDto, session);
+    }
+
+    @GetMapping("/logout")
+    private String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/users/mypage";
+    }
 
     @ResponseBody
     @GetMapping("/makenProduct")
