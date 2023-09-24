@@ -57,14 +57,14 @@ public class User {
 
 
     public User(UserDto userDto) {
-        this.userId = userDto.getId();
+        this.userId = userDto.getUserId();
         this.password = userDto.getPassword();
         this.name = userDto.getName();
         this.grade = userDto.getGrade();
     }
 
     public User(UserRegisterDto userRegisterDto) {
-        this.userId = userRegisterDto.getId();
+        this.userId = userRegisterDto.getUserId();
         this.password = userRegisterDto.getPassword();
         this.name = userRegisterDto.getName();
         this.grade = userRegisterDto.getGrade();

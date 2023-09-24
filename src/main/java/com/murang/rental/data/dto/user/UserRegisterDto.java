@@ -10,7 +10,7 @@ import lombok.Data;
 @Builder
 public class UserRegisterDto {
 
-    private String id;
+    private String userId;
     private String password;
     private String name;
     private Double grade;

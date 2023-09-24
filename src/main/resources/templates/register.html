@@ -2,14 +2,14 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="/fragment/header.html :: fragment-head"></div>
-    <title>Document</title>
+    <title>회원가입</title>
     <script>
 
 
      $(document).ready(function() {
 $("#smit").prop("disabled", true);
 
-document.querySelector("#id").addEventListener('input', function(event) {
+document.querySelector("#userId").addEventListener('input', function(event) {
   let inputValue = event.target.value;
   inputValue = inputValue.replace(/[^A-Za-z0-9]/g, '');
   event.target.value = inputValue;
@@ -18,7 +18,7 @@ submitBtn.prop("disabled", true);
 });
 
    $(".checkID").click(()=>{
-   var check =  $("#id").val();
+   var check =  $("#userId").val();
    if(check != ""){
     $.ajax({
        method : 'GET',
@@ -40,25 +40,31 @@ submitBtn.prop("disabled", true);
 
    });
     </script>
+    <link href="/css/register.css" rel="stylesheet">
 </head>
 <body>
 <div th:replace="/fragment/header.html :: fragment-header"></div>
-<form action="/users/join" method="POST">
-    아이디
-    <input type="text" maxlength="10" name="id" id="id"/><span class="checkID">중복체크</span><br>
-    비번
-    <input type="text" name="password" /><br>
-    이름
-    <input type="text" name="name" />
-    <br>
-    지역
-    <input id="sido" name="sido" type="text" placeholder="시/도" readonly required>
-    <input id="sigungu" name="sigungu" type="text" placeholder="시/군/구" readonly>
-    <input id="bname" name="bname" type="text" placeholder="동/리" readonly>
-    <input type="button" onclick="findAddr()" value="주소검색"/><br>
-    <input type="submit" id="smit" value="가입" />
 
-</form>
+<div class="regicontainer">
+    <form class="regiform" action="/users/join" method="POST">
+        <h1>머랭</h1>
+        <div class="left-regi">아이디</div>
+        <div class="right-regi"><input type="text" maxlength="10" name="userId" id="userId" style="width:290px;"/><span class="checkID">중복체크</span></div>
+        <div class="left-regi">비밀번호</div>
+        <div class="right-regi"><input type="text" name="password" /></div>
+        <div class="left-regi">이름</div>
+        <div class="right-regi"><input type="text" name="name" /></div>
+        지역
+        <div class="locations">
+            <input id="sido" name="sido" type="text" placeholder="시/도" readonly required>
+            <input id="sigungu" name="sigungu" type="text" placeholder="시/군/구" readonly>
+            <input id="bname" name="bname" type="text" placeholder="동/리" readonly>
+            <p onclick="findAddr()">주소검색</p>
+        </div>
+        <input type="submit" id="smit" value="가입" />
+
+    </form>
+
 <div th:replace="/fragment/footer.html :: fragment-footer"></div>
 </body>
 <script>

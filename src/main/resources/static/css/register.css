@@ -1,0 +1,73 @@
+.regicontainer{
+  width:1903px;
+  margin: 0 auto;
+}
+.regiform h1{
+  text-align: center;
+  margin-bottom: 50px;
+}
+.regiform{
+  position: relative;
+  padding:20px;
+  border: 1px solid #bbb;
+margin: 0 auto;
+  width:500px;
+  height: 450px;
+  margin-top: 100px;
+}
+
+
+.left-regi{
+  width:100px;
+  height: 30px;
+  line-height: 30px;
+  float:left;
+  margin-bottom: 10px;
+}
+.right-regi{
+  width:358px;
+  float:right;
+  height: 30px;
+  margin-bottom: 10px;
+}
+.right-regi #userID{
+  width:290px;
+  height: 30px;
+}
+.right-regi input{
+  width:100%;
+  height: 30px;
+}
+
+
+.checkID{
+  margin-left: 5px;
+  cursor: pointer;
+}
+.checkID:hover{
+  color:#bbb;
+}
+
+
+.locations input{
+  margin-bottom: 10px;
+  width:100%;
+  height: 30px;
+}
+.locations p{
+  float:right;
+  border: 1px solid #bbb;
+  padding: 5px;
+  cursor: pointer;
+}
+#smit{
+  bottom: 15px;
+  right: 20px;
+  position: absolute;
+  border: none;
+  background-color: #bbb;
+  color:#fff;
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
