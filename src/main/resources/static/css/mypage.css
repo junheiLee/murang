@@ -1,5 +1,5 @@
 .container-wrap{
-width:1903px;
+width:1519px;
 margin:0 auto;
 }
 
@@ -156,10 +156,12 @@ position:absolute;
     height: 34px;
     float:left;
     line-height: 34px;
+      padding-left: 10px;
   }
   .pinfo{
     width: 718px;
     height: 34px;
     line-height: 34px;
     float:left;
+      padding-left: 10px;
   }

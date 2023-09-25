@@ -5,6 +5,7 @@ import com.murang.rental.data.dto.user.LoginDto;
 import com.murang.rental.data.dto.user.UserRegisterDto;
 import com.murang.rental.data.entity.Articles;
 import com.murang.rental.data.entity.User;
+import com.murang.rental.service.ArticleService;
 import com.murang.rental.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final ArticleService articleService;
 
     @GetMapping("/register")
     public String register() {
@@ -40,9 +42,10 @@ public class UserController {
     }
 
     @GetMapping("/loginform")
-    public String loginForm(){
+    public String loginForm() {
         return "login";
     }
+
     @PostMapping("/join")
     public String join(UserRegisterDto userRegisterDto) {
         userService.insertUser(userRegisterDto);
@@ -67,32 +70,27 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/makenProduct")
-    public List<String> makenProduct() {
-        List<String> test = new ArrayList<>();
+    @GetMapping("/makenArticles")
+    public List<Articles> myArticleList(HttpSession session) {
+        List<Articles> myArticleList = articleService.myArticleList((String) session.getAttribute("userId"));
 
-        test.add("hi2");
-        test.add("hi3");
-        test.add("hi4");
-        test.add("hi5");
-
-        return test;
+        return myArticleList;
     }
 
     @ResponseBody
     @GetMapping("/rentProduct")
     public List<Articles> rentProduct(HttpSession session) {
-        List<Articles> test = userService.findRentalList((String)session.getAttribute("userId"));
+        List<Articles> test = userService.findRentalList((String) session.getAttribute("userId"));
 
         return test;
     }
 
     @ResponseBody
     @GetMapping("/likeProduct")
-    public List<ArticleDto> likeProduct(HttpSession session) {
-        List<ArticleDto> articleDtos = userService.findHeartList((String)session.getAttribute("userId"));
+    public List<Articles> likeProduct(HttpSession session) {
+        List<Articles> articles = userService.findHeartList((String) session.getAttribute("userId"));
 
-        return articleDtos;
+        return articles;
     }
 
     @ResponseBody

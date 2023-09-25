@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -106,21 +108,26 @@ public class ArticleController {
     public String detailArticle(@PathVariable Integer articleId, HttpSession session, Model model) {
         Map<String, Object> detailArticle = articleService.detailArticle(articleId);
         boolean heartDto = articleService.heartArticleSearch((String) session.getAttribute("userId"), articleId);
+        ArticleDto articleDto = (ArticleDto) detailArticle.get("articleDto");
+        LocalDateTime publishDay = articleDto.getPublishDay();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = publishDay.format(formatter);
+        model.addAttribute("formattedDate", formattedDate);
         model.addAttribute("heartDto", heartDto);
-        model.addAttribute("articleDto", (ArticleDto) detailArticle.get("articleDto"));
+        model.addAttribute("articleDto", articleDto);
         model.addAttribute("filePath", (String) detailArticle.get("filePath"));
         return "articles/detail";
     }
 
     @GetMapping("/like/{articleId}")
     public String likeArticle(HttpSession session, @PathVariable Integer articleId) {
-        articleService.heartArticle((String) session.getAttribute("userId"), articleId);
+        articleService.heartArticle((String) session.getAttribute("userId"), articleId, session);
         return "redirect:/articles/" + articleId.toString();
     }
 
     @GetMapping("/cancelLike/{articleId}")
     public String cancelHeart(HttpSession session, @PathVariable Integer articleId) {
-        articleService.heartArticleDelete((String) session.getAttribute("userId"), articleId);
+        articleService.heartArticleDelete((String) session.getAttribute("userId"), articleId, session);
         return "redirect:/articles/" + articleId.toString();
     }
 
@@ -144,10 +151,5 @@ public class ArticleController {
      * @return          해당 사용자가 작성한 상품 글 목록
      */
 
-//    @ResponseBody
-//    @GetMapping("/my")
-//    public List<Articles> myArticleList(HttpSession session) {
-//        List<Articles> myArticleList = articleService.myArticleList((String) session.getAttribute("userId"));
-//        return myArticleList;
-//    }
+
 }

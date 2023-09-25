@@ -72,7 +72,7 @@ width: 100%;
 
 .header-wrap {
     margin: 0 auto;
-    width: 1903px;
+    width: 1519px;
     height: 80px;
     background-color: antiquewhite;
 }
@@ -195,7 +195,7 @@ header {
 /* 메인에 새로넣기 */
 
 .regicontainer{
-  width:1903px;
+  width:1519px;
   margin: 0 auto;
 }
 .regiform h1{
@@ -271,7 +271,7 @@ margin: 0 auto;
 
 
 .main-banner{
-    width: 1903px;
+    width: 1519px;
  margin: 0 auto;
 }
 
@@ -332,7 +332,7 @@ margin: 0 auto;
 /* 푸터 시작*/
 
 footer{
-    width:1903px;
+    width:1519px;
     margin-top: 100px;
     height: 100px;
 }
@@ -353,7 +353,7 @@ footer{
 
 /*로그인 템플릿  */
 .loginformwrap{
-    width:1903px;
+    width:1519px;
 margin: 0 auto;
 }
 
@@ -546,7 +546,7 @@ body {
 /* 등록폼 */
 
 .sign-wrap{
-  width:1903px;
+  width:1519px;
   margin: 0 auto;
 }
 #signprod{
@@ -653,7 +653,7 @@ body {
 /**/
 
 .article-wrap{
-  width:1903px;
+  width:1519px;
   margin: 0 auto;
 }
 .article-main{
@@ -724,7 +724,7 @@ padding:20px;
 /**/
 
 .product-wrap{
-  width:1903px;
+  width:1519px;
   margin: 0 auto;
 }
 

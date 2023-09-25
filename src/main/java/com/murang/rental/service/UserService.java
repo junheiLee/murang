@@ -22,6 +22,8 @@ public interface UserService {
 
     public List<Articles> findRentalList(String userId);
 
-    public List<ArticleDto> findHeartList(String userId);
+    public List<Articles> findHeartList(String userId);
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.murang.rental.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.murang.rental.data.dto.LocationDto;
 import com.murang.rental.data.dto.article.ArticleDto;
 import com.murang.rental.data.dto.article.ArticleRegisterDto;
@@ -44,6 +45,7 @@ public class Articles {
 
     private boolean status;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     @ToString.Exclude

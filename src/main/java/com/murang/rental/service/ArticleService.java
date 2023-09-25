@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -56,12 +57,12 @@ public class ArticleService {
         return articlesRepository.findAllByCategory(category);
     }
 
-//    @Transactional(readOnly = true)
-//    public List<Articles> myArticleList(String userId) {
-////        User user = new User();
-////        user.setUserNum(userNum);
-//        return articlesRepository.findByUserId(userId);
-//    }
+    @Transactional(readOnly = true)
+    public List<Articles> myArticleList(String userId) {
+        User user = userRepository.findByUserId(userId).get();
+        System.out.println(user);
+        return articlesRepository.findByUser(user);
+    }
 
 //        @Transactional(readOnly = true)
 //    public List<Articles> articleList(LocationDto locationDto) {
@@ -100,14 +101,19 @@ public class ArticleService {
     }
 
     @Transactional
-    public void heartArticle(String userId, Integer articleId) {
+    public void heartArticle(String userId, Integer articleId, HttpSession session) {
         HeartArticle build = new HeartArticle(userId, articleId);
         heartRepository.save(build);
+        Long heartCount = heartRepository.countByUserId((String) session.getAttribute("userId"));
+        session.setAttribute("heartCount", heartCount);
     }
 
     @Transactional
-    public void heartArticleDelete(String userId, Integer articleId) {
+    public void heartArticleDelete(String userId, Integer articleId, HttpSession session) {
         heartRepository.deleteByUserIdAndArticleId(userId, articleId);
+
+        Long heartCount = heartRepository.countByUserId((String) session.getAttribute("userId"));
+        session.setAttribute("heartCount", heartCount);
     }
 
     @Transactional

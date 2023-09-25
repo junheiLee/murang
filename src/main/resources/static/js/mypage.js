@@ -10,29 +10,33 @@ if(sendParam == "1"){
             $.ajax({
                 url: "/users/likeProduct",
                 method: 'GET',
+                dataType: 'json',
                 success: function (response) {
 
 
-                    $(".productlist").html("");
-                var $productList = $('.productlist');
+                    console.log(response);
+                    // 받아온 데이터가 배열인 경우
+                    if (Array.isArray(response)) {
+                        $(".productlist").html("");
+                        var $productList = $('.productlist');
 
-                for (var i = 0; i < response.length; i++) {
-                    var item = response[i];
-                    var $listItem = $('<li>').addClass('plist');
-                    var $pimg = $('<div>').addClass('pimg');
-                    var $img = $('<img>').attr('src', "/images"+item.imageSrc).attr('width', '100%').attr('height', '100%').attr('alt', '유저');
-                    var $ptitle = $('<div>').addClass('ptitle').text(item);
-                    var $pinfo = $('<div>').addClass('pinfo').text('가격: ' + item.price + ' 렌트기간: ' + item.period + ' 등록날짜: ' + item.publishDay);
+                        for (var i = 0; i < response.length; i++) {
+                            var item = response[i];
+                            var $listItem = $('<li>').addClass('plist');
+                            var $pimg = $('<div>').addClass('pimg');
+                            var $img = $('<img>').attr('src', '/'+item.filePath).attr('width', '100%').attr('height', '100%').attr('alt', '유저');
+                            var $ptitle = $('<div>').addClass('ptitle').text(item.title); // item의 title 속성에 접근
+                            var $pinfo = $('<div>').addClass('pinfo').text('가격: ' + item.price + ' 렌트기간: ' + item.period + ' 등록날짜: ' + item.publishDay);
 
-                    $pimg.append($img);
-                    $listItem.append($pimg);
-                    $listItem.append($ptitle);
-                    $listItem.append($pinfo);
+                            $pimg.append($img);
+                            $listItem.append($pimg);
+                            $listItem.append($ptitle);
+                            $listItem.append($pinfo);
 
-                    $productList.append($listItem);
-
-            }
-        },
+                            $productList.append($listItem);
+                        }
+                    }
+                },
                 error: function (error) {
                     console.error('Error:', error);
                 }
@@ -66,6 +70,7 @@ menuItems.forEach(item => {
                 dataType: 'json',
                 success: function (response) {
 
+            console.log(response);
             // 받아온 데이터가 배열인 경우
             if (Array.isArray(response)) {
                     $(".productlist").html("");
@@ -76,7 +81,7 @@ menuItems.forEach(item => {
                     var $listItem = $('<li>').addClass('plist');
                     var $pimg = $('<div>').addClass('pimg');
                     var $img = $('<img>').attr('src', '/'+item.filePath).attr('width', '100%').attr('height', '100%').attr('alt', '유저');
-                    var $ptitle = $('<div>').addClass('ptitle').text(item);
+                    var $ptitle = $('<div>').addClass('ptitle').text(item.title); // item의 title 속성에 접근
                     var $pinfo = $('<div>').addClass('pinfo').text('가격: ' + item.price + ' 렌트기간: ' + item.period + ' 등록날짜: ' + item.publishDay);
 
                     $pimg.append($img);

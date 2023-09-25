@@ -17,7 +17,7 @@
 
     <div class="zzim1">
         <div class="zzim2">찜한상품</div>
-        <a href="/users/mypage?like=1"><i class="fa-solid fa-heart"></i><span th:if="${session.userId == null}">0</span><span th:if="${session.userId != null}" th:text="|&nbsp; ${session.zzim}|"></span></a>
+        <a href="/users/mypage?like=1"><i class="fa-solid fa-heart"></i><span th:if="${session.userId == null}">0</span><span th:if="${session.userId != null}" th:text="|&nbsp; ${session.heartCount}|"></span></a>
     </div>
 
     <div class="upbtn" onclick=" window.scrollTo({ top: 0, behavior: 'smooth' });">

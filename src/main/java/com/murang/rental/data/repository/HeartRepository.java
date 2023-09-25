@@ -10,4 +10,6 @@ public interface HeartRepository extends JpaRepository<HeartArticle, Integer> {
     public Optional<HeartArticle> findByUserIdAndArticleId(String userId, Integer articleId);
     public void deleteByUserIdAndArticleId(String userId, Integer articleId);
     public List<HeartArticle> findAllByUserId(String userId);
+
+    Long countByUserId(String userId);
 }

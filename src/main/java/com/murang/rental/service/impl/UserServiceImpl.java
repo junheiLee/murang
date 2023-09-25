@@ -57,6 +57,8 @@ public class UserServiceImpl implements UserService {
         Optional<User> user = userRepository.findByUserIdAndPassword(loginDto.getUserId(), loginDto.getPassword());
         if (user.isPresent()) {
             session.setAttribute("userId", loginDto.getUserId());
+            Long heartCount = heartRepository.countByUserId(user.get().getUserId());
+            session.setAttribute("heartCount", heartCount);
 //            session.setAttribute("userNum", user.get().getUserNum());
             return "redirect:/articles";
         } else {
@@ -69,18 +71,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).get().getRentArticlesList();
     }
 
-    public List<ArticleDto> findHeartList(String userId) {
-        List<ArticleDto> heartList = new ArrayList<>();
+    public List<Articles> findHeartList(String userId) {
+        List<Articles> heartList = new ArrayList<>();
         for (HeartArticle heartArticle :
                 heartRepository.findAllByUserId(userId)) {
             Articles findArticles = articlesRepository.findById(heartArticle.getArticleId()).get();
-            ArticleDto dto = ArticleDto.builder()
-                    .price(findArticles.getPrice())
-                    .period(findArticles.getPeriod())
-                    .publishDay(findArticles.getPublishDay())
-                    .title(findArticles.getTitle())
-                    .build();
-            heartList.add(dto);
+            heartList.add(findArticles);
         }
         return heartList;
     }
