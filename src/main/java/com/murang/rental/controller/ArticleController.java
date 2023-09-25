@@ -54,7 +54,12 @@ public class ArticleController {
                 .filter(queryCategory -> queryCategory.name().equals(query))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException());
-        model.addAttribute("articlesList", articleService.articleList(category));
+        if(category.equals(Category.전체)) {
+            model.addAttribute("articlesList", articleService.articleList());
+        } else {
+            model.addAttribute("articlesList", articleService.articleList(category));
+
+        }
         return "articles/list";
     }
 
