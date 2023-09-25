@@ -1,7 +1,9 @@
 package com.murang.rental.controller;
 
+import com.murang.rental.data.dto.article.ArticleDto;
 import com.murang.rental.data.dto.user.LoginDto;
 import com.murang.rental.data.dto.user.UserRegisterDto;
+import com.murang.rental.data.entity.Articles;
 import com.murang.rental.data.entity.User;
 import com.murang.rental.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -79,28 +81,18 @@ public class UserController {
 
     @ResponseBody
     @GetMapping("/rentProduct")
-    public List<String> rentProduct() {
-        List<String> test = new ArrayList<>();
-
-        test.add("hii6");
-        test.add("hii7");
-        test.add("hii8");
-        test.add("hii9");
+    public List<Articles> rentProduct(HttpSession session) {
+        List<Articles> test = userService.findRentalList((String)session.getAttribute("userId"));
 
         return test;
     }
 
     @ResponseBody
     @GetMapping("/likeProduct")
-    public List<String> likeProduct() {
-        List<String> test = new ArrayList<>();
+    public List<ArticleDto> likeProduct(HttpSession session) {
+        List<ArticleDto> articleDtos = userService.findHeartList((String)session.getAttribute("userId"));
 
-        test.add("hiii2");
-        test.add("hiii3");
-        test.add("hiii4");
-        test.add("hiii5");
-
-        return test;
+        return articleDtos;
     }
 
     @ResponseBody
