@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Error</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Error Page</h1>
+
+<!-- 에러 메시지 출력 -->
+<p th:text="${message}"></p>
+<a th:href="@{/}">홈으로 이동</a>
+
+</body>
+</html>

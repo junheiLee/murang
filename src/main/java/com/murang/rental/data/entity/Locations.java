@@ -1,7 +1,6 @@
 package com.murang.rental.data.entity;
 
 import com.murang.rental.data.dto.LocationDto;
-import com.murang.rental.data.dto.article.ArticleRegisterDto;
 import lombok.*;
 
 import javax.persistence.Entity;

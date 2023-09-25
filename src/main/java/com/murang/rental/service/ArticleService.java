@@ -2,12 +2,13 @@ package com.murang.rental.service;
 
 import com.murang.rental.data.dto.article.ArticleRegisterDto;
 import com.murang.rental.data.entity.Articles;
+import com.murang.rental.data.entity.Category;
 import com.murang.rental.data.entity.HeartArticle;
 import com.murang.rental.data.entity.User;
-import com.murang.rental.data.repository.ArticlesRepository;
 import com.murang.rental.data.repository.HeartRepository;
 import com.murang.rental.data.repository.LocationRepository;
 import com.murang.rental.data.repository.UserRepository;
+import com.murang.rental.data.repository.article.ArticlesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,10 +50,23 @@ public class ArticleService {
         return articlesRepository.findAll();
     }
 
-    //    @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
+    public List<Articles> articleList(Category category)
+    {
+        return articlesRepository.findAllByCategory(category);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Articles> myArticleList(String userId) {
+//        User user = new User();
+//        user.setUserNum(userNum);
+        return articlesRepository.findByUserId(userId);
+    }
+//        @Transactional(readOnly = true)
 //    public List<Articles> articleList(LocationDto locationDto) {
 //        return articlesRepository.findAllByLocation(locationDto.getSido());
 //    }
+
     @Transactional
     public void insertArticle(ArticleRegisterDto articleRegisterDto, MultipartFile image, String userId) throws IOException {
         User user = userRepository.findByUserId(userId).get();

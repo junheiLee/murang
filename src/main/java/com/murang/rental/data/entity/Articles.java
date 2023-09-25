@@ -44,8 +44,9 @@ public class Articles {
 
     private boolean status;
 
-    @ManyToOne
-    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
+//    @ToString.Exclude
     private User user;
 
     @Enumerated(EnumType.STRING)

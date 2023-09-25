@@ -3,6 +3,7 @@ package com.murang.rental.controller;
 import com.murang.rental.data.dto.article.ArticleDto;
 import com.murang.rental.data.dto.article.ArticleRegisterDto;
 import com.murang.rental.data.entity.Articles;
+import com.murang.rental.data.entity.Category;
 import com.murang.rental.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,25 @@ public class ArticleController {
         model.addAttribute("articlesList", articleService.articleList());
         return "articles/list";
     }
+
+    /**
+     * 파라미터로 넘어온 이름으로 해당 category의 목록을 가져온다.
+     * 추후 enum에 없는 이름이 파라미터로 넘어온 경우 articles/list로 경로 변경
+     *
+     * @param query 해당 카테고리 이름
+     * @param model articleList
+     * @return 상품 목록
+     */
+    @GetMapping("/search/{query}")
+    public String articleSearchList(@PathVariable String query, Model model) {
+        Category category = Arrays.stream(Category.values())
+                .filter(queryCategory -> queryCategory.name().equals(query))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException());
+        model.addAttribute("articlesList", articleService.articleList(category));
+        return "articles/list";
+    }
+
 
 //    @GetMapping("/region")
 //    public String articleList(@ModelAttribute LocationDto locationDto, Model model) {
@@ -114,5 +135,19 @@ public class ArticleController {
         List<Articles> rentalArticleList = articleService.rentalArticleList((String) session.getAttribute("userId"));
         model.addAttribute("rentalArticleList", rentalArticleList);
         return "/articles/rentals";
+    }
+
+    /**
+     * session에서 가져온 User의 pk값으로 등록한 상품리스트를 가져온다.
+     *
+     * @param session   현재 로그인 돼있는 사용자의 id
+     * @return          해당 사용자가 작성한 상품 글 목록
+     */
+
+    @ResponseBody
+    @GetMapping("/my")
+    public List<Articles> myArticleList(HttpSession session) {
+        List<Articles> myArticleList = articleService.myArticleList((String) session.getAttribute("userId"));
+        return myArticleList;
     }
 }

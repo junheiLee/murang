@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin:auto;
+            overflow:hidden;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2, p {
+            text-align:center;
+            color:#333;
+        }
+        input[type='text'], textarea, input[type='number']{
+            width :100%;
+            border :1px solid #ddd;
+            padding :10px;
+            border-radius :5px;
+            margin-bottom :10px;
+        }
+        input[type='submit']{
+            display:block;
+            width :100%;
+            padding :10px;
+            border:none ;
+            background-color:#333 ;
+            color:white ;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Review</h2>
+
+    <div th:if="${message}">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form th:action="@{/reviews}" th:object="${reviewDto}" method="post">
+        닉네임:<br/>
+        <input type="text" th:field="*{writerId}"/><br/><br/>
+        상품:<br/>
+        <input type="text" th:field="*{articlesId}"/><br/><br/>
+        내용:<br/>
+        <textarea th:field="*{comments}"></textarea><br/><br/>
+        평점(1-5):<br/>
+        <input type="number" min=1 max=5 th:field ="*{rating}"/><br/><br/>
+        <input type='submit' value='전송' />
+    </form>
+
+</div>
+
+
+</body>
+</html>

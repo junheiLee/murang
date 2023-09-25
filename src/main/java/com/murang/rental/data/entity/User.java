@@ -13,6 +13,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity
 @Setter
 @Getter
@@ -20,13 +22,15 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "user")
 public class User {
-
+//
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Integer userNum;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer num;
-
-    @Column(unique = true, nullable = false)
+//    @Column(unique = true, nullable = false)
+    @Column(name="user_id", columnDefinition = "varchar(20)")
     private String userId;
 
     @Column(nullable = false)
@@ -46,10 +50,10 @@ public class User {
 //    @Column(nullable = false)
 //    private String nickname;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = ALL)
     private Locations location;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", cascade = ALL,orphanRemoval = true)
     private List<Articles> makenArticlesList = new ArrayList<>();
 
     @OneToMany

@@ -14,7 +14,7 @@
 
         <div class="article-category">
             <div class="category-explan">카테고리</div>
-            <select th:name="category">
+            <select onchange="searchCategory(this)" th:name="category">
                 <option th:each="categoryValue : ${T(com.murang.rental.data.entity.Category).values()}"
                         th:value="${categoryValue.name()}" th:text="${categoryValue.name()}">
                     val
@@ -46,4 +46,9 @@
 
 
 </body>
+<script>
+    function searchCategory(categorySelect) {
+        document.location = '/articles/search/' + categorySelect.value;
+    }
+</script>
 </html>

@@ -2,7 +2,6 @@ package com.murang.rental.service;
 
 
 import com.murang.rental.data.dto.user.LoginDto;
-import com.murang.rental.data.dto.user.UserDto;
 import com.murang.rental.data.dto.user.UserRegisterDto;
 import com.murang.rental.data.entity.User;
 

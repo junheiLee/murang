@@ -1,7 +1,6 @@
 package com.murang.rental.service.impl;
 
 import com.murang.rental.data.dto.user.LoginDto;
-import com.murang.rental.data.dto.user.UserDto;
 import com.murang.rental.data.dto.user.UserRegisterDto;
 import com.murang.rental.data.entity.User;
 import com.murang.rental.data.repository.UserRepository;
@@ -49,6 +48,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> user = userRepository.findByUserIdAndPassword(loginDto.getUserId(), loginDto.getPassword());
         if(user.isPresent()){
             session.setAttribute("userId", loginDto.getUserId());
+//            session.setAttribute("userNum", user.get().getUserNum());
             return "redirect:/articles";
         } else{
             return "loginError";
