@@ -22,15 +22,15 @@ import static javax.persistence.CascadeType.ALL;
 @AllArgsConstructor
 @Table(name = "user")
 public class User {
-//
-//
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer userNum;
+
 
     @Id
-//    @Column(unique = true, nullable = false)
-    @Column(name="user_id", columnDefinition = "varchar(20)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer userNum;
+
+//    @Id
+//    @Column(name="user_id", columnDefinition = "varchar(20)")
+    @Column(unique = true, nullable = false)
     private String userId;
 
     @Column(nullable = false)
@@ -53,7 +53,7 @@ public class User {
     @OneToOne(cascade = ALL)
     private Locations location;
 
-    @OneToMany(mappedBy = "user", cascade = ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = ALL, orphanRemoval = true)
     private List<Articles> makenArticlesList = new ArrayList<>();
 
     @OneToMany

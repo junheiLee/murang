@@ -56,12 +56,13 @@ public class ArticleService {
         return articlesRepository.findAllByCategory(category);
     }
 
-    @Transactional(readOnly = true)
-    public List<Articles> myArticleList(String userId) {
-//        User user = new User();
-//        user.setUserNum(userNum);
-        return articlesRepository.findByUserId(userId);
-    }
+//    @Transactional(readOnly = true)
+//    public List<Articles> myArticleList(String userId) {
+////        User user = new User();
+////        user.setUserNum(userNum);
+//        return articlesRepository.findByUserId(userId);
+//    }
+
 //        @Transactional(readOnly = true)
 //    public List<Articles> articleList(LocationDto locationDto) {
 //        return articlesRepository.findAllByLocation(locationDto.getSido());

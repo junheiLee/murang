@@ -144,10 +144,10 @@ public class ArticleController {
      * @return          해당 사용자가 작성한 상품 글 목록
      */
 
-    @ResponseBody
-    @GetMapping("/my")
-    public List<Articles> myArticleList(HttpSession session) {
-        List<Articles> myArticleList = articleService.myArticleList((String) session.getAttribute("userId"));
-        return myArticleList;
-    }
+//    @ResponseBody
+//    @GetMapping("/my")
+//    public List<Articles> myArticleList(HttpSession session) {
+//        List<Articles> myArticleList = articleService.myArticleList((String) session.getAttribute("userId"));
+//        return myArticleList;
+//    }
 }

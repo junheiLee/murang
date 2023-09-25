@@ -46,7 +46,7 @@ public class Articles {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
-//    @ToString.Exclude
+    @ToString.Exclude
     private User user;
 
     @Enumerated(EnumType.STRING)
