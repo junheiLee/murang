@@ -13,8 +13,8 @@ public interface ArticlesRepository extends JpaRepository<Articles,Integer>  {
 
     List<Articles> findAllByCategory(Category category);
 
-    @EntityGraph(attributePaths = {"makenArticlesList"})
-    List<Articles> findByUserId(@Param("user_id") String userId);
+//    @EntityGraph(attributePaths = {"makenArticlesList"})
+//    List<Articles> findByUserId(String userId);
 
 //    @Query(value = "select * from articles where articles.location.sido=?1")
 //    List<Articles> findAllByLocation(String sido);
