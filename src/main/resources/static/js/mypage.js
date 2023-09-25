@@ -22,7 +22,7 @@ if(sendParam == "1"){
                     var $pimg = $('<div>').addClass('pimg');
                     var $img = $('<img>').attr('src', "/images"+item.imageSrc).attr('width', '100%').attr('height', '100%').attr('alt', '유저');
                     var $ptitle = $('<div>').addClass('ptitle').text(item);
-                    var $pinfo = $('<div>').addClass('pinfo').text('가격: ' + item.price + ' 렌트기간: ' + item.rentalPeriod + ' 등록날짜: ' + item.registrationDate);
+                    var $pinfo = $('<div>').addClass('pinfo').text('가격: ' + item.price + ' 렌트기간: ' + item.period + ' 등록날짜: ' + item.publishDay);
 
                     $pimg.append($img);
                     $listItem.append($pimg);
@@ -63,6 +63,7 @@ menuItems.forEach(item => {
             $.ajax({
                 url: "/users/"+url,
                 method: 'GET',
+                dataType: 'json',
                 success: function (response) {
 
             // 받아온 데이터가 배열인 경우
@@ -74,9 +75,9 @@ menuItems.forEach(item => {
                     var item = response[i];
                     var $listItem = $('<li>').addClass('plist');
                     var $pimg = $('<div>').addClass('pimg');
-                    var $img = $('<img>').attr('src', item.imageSrc).attr('width', '100%').attr('height', '100%').attr('alt', '유저');
+                    var $img = $('<img>').attr('src', '/'+item.filePath).attr('width', '100%').attr('height', '100%').attr('alt', '유저');
                     var $ptitle = $('<div>').addClass('ptitle').text(item);
-                    var $pinfo = $('<div>').addClass('pinfo').text('가격: ' + item.price + ' 렌트기간: ' + item.rentalPeriod + ' 등록날짜: ' + item.registrationDate);
+                    var $pinfo = $('<div>').addClass('pinfo').text('가격: ' + item.price + ' 렌트기간: ' + item.period + ' 등록날짜: ' + item.publishDay);
 
                     $pimg.append($img);
                     $listItem.append($pimg);
