@@ -75,7 +75,9 @@ public class Articles {
     public static ArticleDto articleFactory(Articles articles) {
         return ArticleDto.builder()
                 .id(articles.getArticleId())
+                .userId(articles.getUser().getUserId())
                 .title(articles.getTitle())
+                .userGrade(articles.getUser().getGrade())
                 .publishDay(articles.getPublishDay())
                 .stock(articles.getStock())
                 .price(articles.getPrice())

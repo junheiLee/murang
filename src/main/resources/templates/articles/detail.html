@@ -50,8 +50,8 @@
             <div class="detail-desc" th:text="${articleDto.description}">상품설명</div>
             <div class="product-info">
                 <h1 style="font-size: 25px;">공유자 정보</h1>
-                <h1>이름: (이름)</h1>
-                <h1>신뢰등급: (신뢰등급)</h1>
+                <h1 th:text="|이름: ${articleDto.userId}|">이름 </h1>
+                <h1 th:text="|신뢰등급: ${articleDto.userGrade}|">신뢰 등급 </h1>
             </div>
         </div>
         <div style="clear: both;"></div>

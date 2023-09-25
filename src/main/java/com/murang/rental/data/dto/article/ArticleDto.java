@@ -21,6 +21,10 @@ public class ArticleDto {
 
     private Integer price;
 
+    private String userId;
+
+    private Double userGrade;
+
     private Integer period;
 
     private String description;
