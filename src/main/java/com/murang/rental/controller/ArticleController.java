@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -85,8 +87,13 @@ public class ArticleController {
     public String detailArticle(@PathVariable Integer articleId, HttpSession session, Model model) {
         Map<String, Object> detailArticle = articleService.detailArticle(articleId);
         boolean heartDto = articleService.heartArticleSearch((String) session.getAttribute("userId"), articleId);
+        ArticleDto articleDto = (ArticleDto) detailArticle.get("articleDto");
+        LocalDateTime publishDay = articleDto.getPublishDay();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = publishDay.format(formatter);
+        model.addAttribute("formattedDate", formattedDate);
         model.addAttribute("heartDto", heartDto);
-        model.addAttribute("articleDto", (ArticleDto) detailArticle.get("articleDto"));
+        model.addAttribute("articleDto", articleDto);
         model.addAttribute("filePath", (String) detailArticle.get("filePath"));
         return "articles/detail";
     }

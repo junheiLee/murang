@@ -20,6 +20,7 @@
             location.href="/articles/rentals/"+a;
         }
     </script>
+<link href="/css/detail.css" rel="stylesheet">
 </head>
 <body>
 <div th:replace="/fragment/header.html :: fragment-header"></div>
@@ -32,12 +33,12 @@
             <div class="detail-header" th:text="${articleDto.title}">
                 상품명
                 </div>
-                <a th:onclick="like([[${articleDto.id}]]);" class="headericon" th:if="${heartDto} == false"><i class="fa-solid fa-heart" style="color:black;"></i></a>
-                <a th:onclick="cancel([[${articleDto.id}]]);" class="headericon" th:if="${heartDto} == true"><i class="fa-solid fa-heart" style="color:red;"></i></a>
+                <a th:onclick="like([[${articleDto.id}]]);" class="headericon" style="border:1px solid black" th:if="${heartDto} == false"><i class="fa-solid fa-heart" style="color:black;"></i></a>
+                <a th:onclick="cancel([[${articleDto.id}]]);" class="headericon" style="border:1px solid red;" th:if="${heartDto} == true"><i class="fa-solid fa-heart" style="color:red;"></i></a>
             <h2 th:text="|가격 ${articleDto.price}|">가격</h2>
             <div class="product-day">
                 <p th:text="|렌트기간 ${articleDto.period}|">렌트기간</p>
-                <p th:text="|등록날짜 ${articleDto.publishDay}|">등록날짜</p>
+                <p th:text="${formattedDate}">등록날짜</p>
             </div>
             <div class="buywrap">
                 <div class="leftbtn">머랭톡</div>
